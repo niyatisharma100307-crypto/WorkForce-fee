@@ -1,0 +1,16 @@
+.login-wrap { max-width: 460px; margin: 0 auto; padding: 60px 28px 100px; }
+.role-switch { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 24px 0 28px; }
+.role-btn {
+  border: 2px solid var(--ink); border-radius: var(--radius-md); padding: 16px 10px;
+  background: #fff; font-weight: 700; font-size: 14px; text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+}
+.role-btn .emoji { font-size: 22px; }
+.role-btn.active { background: var(--amber); box-shadow: var(--shadow-card); }
+.login-card { background: #fff; border: 2.5px solid var(--ink); border-radius: var(--radius-lg); padding: 28px; box-shadow: var(--shadow-pop); }
+.login-error { background: rgba(217,108,108,0.15); border: 1.5px solid var(--coral); color: var(--coral-deep); padding: 10px 14px; border-radius: var(--radius-sm); font-size: 13px; margin-bottom: 16px; display: none; }
+.login-error.show { display: block; }
+.signup-row { text-align: center; margin-top: 20px; font-size: 14px; }
+.signup-row a { font-weight: 700; text-decoration: underline; }
+.role-fields { display: none; }
+.role-fields.show { display: block; }

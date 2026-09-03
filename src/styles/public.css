@@ -1,0 +1,57 @@
+/* ============================================
+   Public pages (no login) — shared band + section styles
+   ============================================ */
+
+.public-hero {
+  background: var(--paper-dim);
+  border-bottom: 2px solid var(--ink);
+  padding: 56px 0 40px;
+}
+.public-hero h1 { font-size: clamp(28px, 4vw, 42px); }
+
+.section { padding: 48px 0 80px; }
+
+.filter-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+.filter-chip {
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  background: #fff;
+}
+.filter-chip.active { background: var(--amber); }
+
+.upload-box {
+  border: 2px dashed var(--line-strong);
+  border-radius: var(--radius-md);
+  padding: 28px;
+  text-align: center;
+  background: var(--paper-dim);
+}
+
+.qr-box {
+  width: 96px; height: 96px;
+  background: repeating-conic-gradient(var(--ink) 0% 25%, transparent 0% 50%) 0 0/16px 16px;
+  border: 3px solid var(--ink);
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.emergency-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+  box-shadow: var(--shadow-card);
+}
+.emergency-card .num { font-family: var(--font-mono); font-size: 20px; font-weight: 700; }
