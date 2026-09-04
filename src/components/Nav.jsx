@@ -65,9 +65,14 @@ export default function Nav() {
                 </button>
               </>
             ) : (
-              <Link to="/login" className="btn btn-sm btn-primary">
-                Log in
-              </Link>
+              <>
+                <Link to="/login" className="btn btn-sm btn-ghost">
+                  Log in
+                </Link>
+                <Link to="/signup" className="btn btn-sm btn-primary">
+                  Register
+                </Link>
+              </>
             )}
           </div>
 
