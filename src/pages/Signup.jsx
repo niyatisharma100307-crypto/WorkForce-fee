@@ -20,9 +20,48 @@ export default function Signup() {
 
   // teacher fields
   const [dept, setDept] = useState('');
-  const [selectedClasses, setSelectedClasses] = useState([]);
+  const [teacherYear, setTeacherYear] = useState('1st Year');
+  const [teacherBranch, setTeacherBranch] = useState('CSE');
+  const [teacherCustomBranch, setTeacherCustomBranch] = useState('');
+  const [selectedClasses, setSelectedClasses] = useState(['CSE-1st Year']);
+  const [activeClassTab, setActiveClassTab] = useState('CSE-1st Year');
   const [selectedGroups, setSelectedGroups] = useState([]);
   const [selectedCourseClasses, setSelectedCourseClasses] = useState([]);
+
+  function handleTeacherYearChange(newYear) {
+    setTeacherYear(newYear);
+  }
+
+  function handleTeacherBranchChange(newBranch) {
+    setTeacherBranch(newBranch);
+  }
+
+  function handleTeacherCustomBranchChange(newCustomBranch) {
+    setTeacherCustomBranch(newCustomBranch);
+  }
+
+  function addCurrentTeacherClass() {
+    const finalB = teacherBranch === 'Other' ? (teacherCustomBranch.trim() || 'Other') : teacherBranch;
+    const classKey = `${finalB}-${teacherYear}`;
+    if (!selectedClasses.includes(classKey)) {
+      const nextClasses = [...selectedClasses, classKey];
+      setSelectedClasses(nextClasses);
+      setActiveClassTab(classKey);
+    } else {
+      setActiveClassTab(classKey);
+    }
+  }
+
+  function removeTeacherClass(classKey, e) {
+    if (e) e.stopPropagation();
+    if (selectedClasses.length > 1) {
+      const nextClasses = selectedClasses.filter((c) => c !== classKey);
+      setSelectedClasses(nextClasses);
+      if (activeClassTab === classKey) {
+        setActiveClassTab(nextClasses[0]);
+      }
+    }
+  }
 
   const [pass, setPass] = useState('');
   const [pass2, setPass2] = useState('');
@@ -275,66 +314,167 @@ export default function Signup() {
 
               <div className="field">
                 <label>Class(es) you teach</label>
-                {existingClasses.length === 0 ? (
-                  <div className="field-hint">
-                    No classes exist yet — add a student first, or ask an admin to set one up.
+                <div className="grid-2">
+                  <div className="field" style={{ marginBottom: 0 }}>
+                    <label style={{ fontSize: 12, fontWeight: 500, color: 'var(--muted)' }}>Year</label>
+                    <select value={teacherYear} onChange={(e) => handleTeacherYearChange(e.target.value)}>
+                      {YEARS.map((y) => (
+                        <option key={y}>{y}</option>
+                      ))}
+                    </select>
                   </div>
-                ) : (
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-                    {existingClasses.map((c) => (
-                      <label
-                        key={c}
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: 6,
-                          border: '2px solid var(--line-strong)',
-                          borderRadius: 999,
-                          padding: '6px 12px',
-                          fontSize: 13,
-                          fontWeight: 600,
-                          cursor: 'pointer',
-                          background: selectedClasses.includes(c) ? 'var(--amber)' : '#fff',
-                        }}
-                      >
-                        <input
-                          type="checkbox"
-                          checked={selectedClasses.includes(c)}
-                          onChange={() => toggleClass(c)}
-                          style={{ width: 'auto' }}
-                        />
-                        {c}
-                      </label>
-                    ))}
+                  <div className="field" style={{ marginBottom: 0 }}>
+                    <label style={{ fontSize: 12, fontWeight: 500, color: 'var(--muted)' }}>Branch</label>
+                    <select value={teacherBranch} onChange={(e) => handleTeacherBranchChange(e.target.value)}>
+                      {KNOWN_BRANCHES.map((b) => (
+                        <option key={b}>{b}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+                {teacherBranch === 'Other' && (
+                  <div className="field mt-8" style={{ marginBottom: 0 }}>
+                    <label style={{ fontSize: 12, fontWeight: 500, color: 'var(--muted)' }}>Enter your branch</label>
+                    <input
+                      type="text"
+                      placeholder="e.g. Chemical Engineering"
+                      value={teacherCustomBranch}
+                      onChange={(e) => handleTeacherCustomBranchChange(e.target.value)}
+                    />
                   </div>
                 )}
+
+                <div className="mt-12" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <span style={{ fontSize: 13, fontWeight: 600 }}>Selected Class(es):</span>
+                  <button
+                    type="button"
+                    className="btn btn-sm btn-primary"
+                    onClick={addCurrentTeacherClass}
+                    style={{ fontSize: 12, padding: '5px 12px', fontWeight: 600 }}
+                  >
+                    + Add Class ({teacherBranch === 'Other' ? (teacherCustomBranch.trim() || 'Other') : teacherBranch}-{teacherYear})
+                  </button>
+                </div>
+
+                <div className="mt-8" style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                  {selectedClasses.map((c) => {
+                    const isActive = c === (selectedClasses.includes(activeClassTab) ? activeClassTab : selectedClasses[0]);
+                    const checkedCount = selectedCourseClasses.filter((x) => x.classKey === c).length;
+                    return (
+                      <button
+                        key={c}
+                        type="button"
+                        onClick={() => setActiveClassTab(c)}
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: 6,
+                          border: isActive ? '2px solid var(--ink)' : '2px solid var(--line-strong)',
+                          borderRadius: 999,
+                          padding: '6px 14px',
+                          fontSize: 13,
+                          fontWeight: 600,
+                          background: isActive ? 'var(--amber)' : '#fff',
+                          color: 'var(--ink)',
+                          cursor: 'pointer',
+                          boxShadow: isActive ? '0 2px 4px rgba(0,0,0,0.1)' : 'none',
+                          transition: 'all 0.15s ease',
+                        }}
+                      >
+                        <span>{c}</span>
+                        {checkedCount > 0 && (
+                          <span
+                            style={{
+                              fontSize: 11,
+                              background: isActive ? '#fff' : 'var(--amber)',
+                              borderRadius: 10,
+                              padding: '1px 6px',
+                              fontWeight: 700,
+                            }}
+                          >
+                            {checkedCount}
+                          </span>
+                        )}
+                        {selectedClasses.length > 1 && (
+                          <span
+                            onClick={(e) => removeTeacherClass(c, e)}
+                            style={{
+                              marginLeft: 4,
+                              cursor: 'pointer',
+                              fontWeight: 700,
+                              fontSize: 14,
+                              opacity: 0.7,
+                            }}
+                            title="Remove class"
+                          >
+                            ×
+                          </span>
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
                 <div className="field-hint mt-8">
-                  Pick every class you teach — this is a checklist, not free text, so it can't
-                  accidentally not match. You'll only see and manage students in these classes.
+                  Click any selected class above to view and choose its subjects below.
                 </div>
               </div>
 
               <div className="field">
-                <label>Subjects / course classes you teach</label>
-                {selectedClasses.length === 0 ? (
-                  <div className="field-hint">Select a class above first. Its subjects will appear here.</div>
-                ) : (
-                  <div style={{ display: 'grid', gap: 8 }}>
-                    {selectedClasses.flatMap((classKey) =>
-                      subjectsForClass(classKey).map((course) => {
-                        const key = `${classKey}::${course}`;
-                        const checked = selectedCourseClasses.some((x) => x.key === key);
-                        return (
-                          <label key={key} style={{ display: 'flex', alignItems: 'center', gap: 8, border: '2px solid var(--line-strong)', borderRadius: 10, padding: '8px 10px', background: checked ? 'var(--amber)' : '#fff', cursor: 'pointer' }}>
-                            <input type="checkbox" checked={checked} onChange={() => toggleCourseClass(classKey, course)} style={{ width: 'auto' }} />
-                            <span><strong>{course}</strong><span className="small muted"> · {classKey}</span></span>
-                          </label>
-                        );
-                      })
-                    )}
-                  </div>
-                )}
-                <div className="field-hint mt-8">These selections create your Course Classes. Each one is kept separate by year, class, group and subject.</div>
+                {(() => {
+                  const currentTab = selectedClasses.includes(activeClassTab) ? activeClassTab : (selectedClasses[0] || '');
+                  return (
+                    <>
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
+                        <label style={{ margin: 0 }}>Subjects / course classes you teach</label>
+                        {currentTab && (
+                          <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--muted)', background: 'var(--bg-subtle)', padding: '2px 8px', borderRadius: 6 }}>
+                            Showing for: <strong>{currentTab}</strong>
+                          </span>
+                        )}
+                      </div>
+                      {!currentTab ? (
+                        <div className="field-hint">Select a class above first. Its subjects will appear here.</div>
+                      ) : (
+                        <div style={{ display: 'grid', gap: 8 }}>
+                          {subjectsForClass(currentTab).map((course) => {
+                            const key = `${currentTab}::${course}`;
+                            const checked = selectedCourseClasses.some((x) => x.key === key);
+                            return (
+                              <label
+                                key={key}
+                                style={{
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  gap: 8,
+                                  border: '2px solid var(--line-strong)',
+                                  borderRadius: 10,
+                                  padding: '8px 10px',
+                                  background: checked ? 'var(--amber)' : '#fff',
+                                  cursor: 'pointer',
+                                  fontWeight: checked ? 600 : 400,
+                                }}
+                              >
+                                <input
+                                  type="checkbox"
+                                  checked={checked}
+                                  onChange={() => toggleCourseClass(currentTab, course)}
+                                  style={{ width: 'auto' }}
+                                />
+                                <span>
+                                  <strong>{course}</strong>
+                                  <span className="small muted"> · {currentTab}</span>
+                                </span>
+                              </label>
+                            );
+                          })}
+                        </div>
+                      )}
+                      <div className="field-hint mt-8">
+                        Pick subjects for <strong>{currentTab || 'each class'}</strong>. Click different classes under "Selected Class(es)" above to set subjects for each one.
+                      </div>
+                    </>
+                  );
+                })()}
               </div>
 
               <div className="field">
