@@ -64,7 +64,7 @@ export default function StudentProfile() {
   if (!student) {
     return (
       <div className="empty-state">
-        <div className="emoji">⚠️</div>
+        
         We couldn't find your student record. Try logging out and back in.
       </div>
     );
@@ -84,19 +84,19 @@ export default function StudentProfile() {
 
       <div className="stat-row" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
         <div className="stat-card stat-amber">
-          <div className="icon">🏫</div>
+          <div className="icon"></div>
           <div className="num" style={{ fontSize: 18 }}>
             {classKeyOf(student)}
           </div>
           <div className="label">Your class</div>
         </div>
         <div className="stat-card stat-sage">
-          <div className="icon">👥</div>
+          <div className="icon"></div>
           <div className="num">{student.group || '—'}</div>
           <div className="label">Your group</div>
         </div>
         <div className="stat-card stat-slate">
-          <div className="icon">🪪</div>
+          <div className="icon"></div>
           <div className="num" style={{ fontSize: 18 }}>
             {student.id}
           </div>

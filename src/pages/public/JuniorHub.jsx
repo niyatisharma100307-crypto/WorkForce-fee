@@ -182,7 +182,7 @@ export default function JuniorHub() {
         <div className="grid-3" style={{ marginBottom: 48 }}>
           {visibleNotes.length === 0 ? (
             <div className="empty-state" style={{ gridColumn: '1/-1' }}>
-              <div className="emoji">📚</div>
+              
               No notes here yet — be the first to add some.
             </div>
           ) : (
@@ -229,7 +229,7 @@ export default function JuniorHub() {
 
         {questions.length === 0 ? (
           <div className="empty-state">
-            <div className="emoji">🙋</div>
+            
             No questions yet — ask the first one.
           </div>
         ) : (

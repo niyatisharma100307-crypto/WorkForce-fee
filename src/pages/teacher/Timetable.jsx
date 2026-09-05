@@ -38,7 +38,7 @@ export default function TeacherTimetable() {
     toast(`Timetable saved for ${courseClass.course} · ${group}`);
   }
 
-  if (!courseClasses.length) return <><div className="app-header"><div><h1>Timetable</h1><div className="sub">Upload/update a timetable for a specific course class.</div></div></div><div className="empty-state"><div className="emoji">🗓️</div>No course classes assigned yet.</div></>;
+  if (!courseClasses.length) return <><div className="app-header"><div><h1>Timetable</h1><div className="sub">Upload/update a timetable for a specific course class.</div></div></div><div className="empty-state">No course classes assigned yet.</div></>;
 
   return <>
     <div className="app-header"><div><h1>Timetable</h1><div className="sub">Select the exact course, class, group and year. Students in that course class will see this timetable.</div></div></div>

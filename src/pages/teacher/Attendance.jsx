@@ -111,7 +111,7 @@ export default function TeacherAttendance() {
       <>
         <div className="app-header"><div><h1>Attendance</h1><div className="sub">Attendance is separated by your specific course class.</div></div></div>
         <div className="empty-state">
-          <div className="emoji">📚</div>
+          
           No course classes have been assigned to you yet. Ask the administrator to assign a course, year, class and group.
           <div className="mt-16"><Link to="/teacher/roster" style={{ textDecoration: 'underline', fontWeight: 700 }}>Add Students →</Link></div>
         </div>
@@ -147,7 +147,7 @@ export default function TeacherAttendance() {
           <div className="flex-gap"><input type="date" value={date} onChange={(e) => setDate(e.target.value)} /><button className="btn btn-primary" onClick={saveAttendance} disabled={students.length === 0}>Save attendance</button></div>
         </div>
         {students.length === 0 ? (
-          <div className="empty-state"><div className="emoji">👥</div>No students are assigned to this course class. Use <Link to="/teacher/roster" style={{ textDecoration: 'underline', fontWeight: 700, marginLeft: 4 }}>Add Students</Link> first.</div>
+          <div className="empty-state">No students are assigned to this course class. Use <Link to="/teacher/roster" style={{ textDecoration: 'underline', fontWeight: 700, marginLeft: 4 }}>Add Students</Link> first.</div>
         ) : (
           <table className="data-table"><thead><tr><th>Student</th><th>ID</th><th>Group</th><th style={{ textAlign: 'right' }}>Status</th></tr></thead><tbody>
             {students.map((s) => <tr key={s.id}><td>{s.name}</td><td className="mono small">{s.id}</td><td className="small muted">{s.group || '—'}</td><td style={{ textAlign: 'right' }}><div className="flex-gap" style={{ justifyContent: 'flex-end' }}><button type="button" className={`btn btn-sm ${roster[s.id] === 'present' ? 'btn-sage' : 'btn-ghost'}`} onClick={() => setStatus(s.id, 'present')}>Present</button><button type="button" className={`btn btn-sm ${roster[s.id] === 'absent' ? 'btn-coral' : 'btn-ghost'}`} onClick={() => setStatus(s.id, 'absent')}>Absent</button></div></td></tr>)}

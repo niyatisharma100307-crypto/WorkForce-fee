@@ -51,7 +51,7 @@ export default function StudentComplaints() {
 
       {complaints.length === 0 ? (
         <div className="empty-state">
-          <div className="emoji">📮</div>
+          
           No complaints filed yet. If something's wrong, let us know.
         </div>
       ) : (

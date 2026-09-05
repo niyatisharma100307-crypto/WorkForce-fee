@@ -58,7 +58,7 @@ export default function Login() {
             setError('');
           }}
         >
-          <span className="emoji">🎓</span> Student
+           Student
         </button>
         <button
           type="button"
@@ -68,14 +68,14 @@ export default function Login() {
             setError('');
           }}
         >
-          <span className="emoji">🧑‍🏫</span> Teacher
+           Teacher
         </button>
         <button
           type="button"
           className={`role-btn ${role === 'admin' ? 'active' : ''}`}
           onClick={() => { setRole('admin'); setError(''); }}
         >
-          <span className="emoji">🛠️</span> Content Manager
+           Content Manager
         </button>
       </div>
 

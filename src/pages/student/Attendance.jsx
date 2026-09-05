@@ -42,7 +42,7 @@ export default function StudentAttendance() {
     <div className="app-header"><div><h1>Attendance</h1><div className="sub">Only attendance uploaded for your own course classes and teachers is shown.</div></div></div>
     {courseClasses.length > 0 && <div className="panel mb-24"><div className="panel-head"><h3>My course classes</h3></div><div className="grid-2">{courseClasses.map((cc) => <div className="card" key={cc.id}><strong>{cc.course}</strong><div className="small muted mt-8">{courseClassLabel(cc)}</div></div>)}</div></div>}
     <div className="grid-2 mb-24">
-      {subjectGroups.length === 0 ? <div className="empty-state"><div className="emoji">✅</div>No attendance recorded by your teachers yet.</div> : subjectGroups.map((grp) => {
+      {subjectGroups.length === 0 ? <div className="empty-state">No attendance recorded by your teachers yet.</div> : subjectGroups.map((grp) => {
         const { subject, teacherId, present, total, classKey, courseClassId } = grp;
         const pct = Math.round((present / total) * 100);
         const cls = pct >= 75 ? '' : pct >= 60 ? 'mid' : 'low';

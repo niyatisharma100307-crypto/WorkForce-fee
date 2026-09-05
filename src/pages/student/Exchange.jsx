@@ -71,7 +71,7 @@ export default function StudentExchange() {
       <div className="grid-2">
         {visible.length === 0 ? (
           <div className="empty-state" style={{ gridColumn: '1/-1' }}>
-            <div className="emoji">🛍️</div>
+            
             No listings here yet.
           </div>
         ) : (

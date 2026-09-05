@@ -27,22 +27,22 @@ export default function StudentDashboard() {
 
       <div className="stat-row">
         <div className="stat-card stat-sage">
-          <div className="icon">✅</div>
+          <div className="icon"></div>
           <div className="num">{pct}%</div>
           <div className="label">Overall attendance</div>
         </div>
         <div className="stat-card stat-amber">
-          <div className="icon">📝</div>
+          <div className="icon"></div>
           <div className="num">{tests.length}</div>
           <div className="label">Upcoming tests</div>
         </div>
         <div className="stat-card stat-coral">
-          <div className="icon">📎</div>
+          <div className="icon"></div>
           <div className="num">{assignments.length}</div>
           <div className="label">Pending assignments</div>
         </div>
         <div className="stat-card stat-slate">
-          <div className="icon">🎉</div>
+          <div className="icon"></div>
           <div className="num">{events.length}</div>
           <div className="label">Events this month</div>
         </div>
@@ -137,7 +137,7 @@ export default function StudentDashboard() {
               <h3>Pending assignments</h3>
             </div>
             {assignments.length === 0 ? (
-              <div className="empty-state small">All caught up — nothing pending 🎉</div>
+              <div className="empty-state small">All caught up — nothing pending </div>
             ) : (
               assignments.map((a) => (
                 <div className="list-item" key={a.id}>

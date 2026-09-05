@@ -57,7 +57,7 @@ export default function TeacherAssignments() {
 
       {students.length === 0 && (
         <div className="empty-state mb-24">
-          <div className="emoji">🏫</div>
+          
           {myClasses.length === 0 ? (
             <>You aren't assigned to a class yet — update this from your profile.</>
           ) : (
@@ -87,7 +87,7 @@ export default function TeacherAssignments() {
               <tr>
                 <td colSpan={5}>
                   <div className="empty-state">
-                    <div className="emoji">📎</div>
+                    
                     No assignments given yet.
                   </div>
                 </td>

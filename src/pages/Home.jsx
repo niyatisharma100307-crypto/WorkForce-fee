@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom';
 
 const PUBLIC_TILES = [
-  ['/campus-guide', '🗺️', 'Campus Guide', 'Where everything is, plus nearby essentials with map links.'],
-  ['/study-zone', '📖', 'Study Zone', 'Good places to study when the library is full — sorted by vibe.'],
-  ['/junior-hub', '📚', 'Junior Hub', 'Notes by year and subject, plus a place to ask seniors anything.'],
-  ['/opportunities', '🚀', 'Opportunities', 'Hackathons, internships, and international programs, by deadline.'],
-  ['/clubs', '🎭', 'Clubs', "See what a club's about and join straight from the page."],
-  ['/emergency', '🚨', 'Emergency Help', "Every number you'd need in a hurry, in one place."],
-  ['/suggestions', '💬', 'Anonymous Suggestions', 'Say what needs fixing — no name attached.'],
-  ['/campus-updates', '📣', 'Campus Updates', 'University-wide events and announcements, always current.'],
+  ['/campus-guide', '', 'Campus Guide', 'Where everything is, plus nearby essentials with map links.'],
+  ['/study-zone', '', 'Study Zone', 'Good places to study when the library is full — sorted by vibe.'],
+  ['/junior-hub', '', 'Junior Hub', 'Notes by year and subject, plus a place to ask seniors anything.'],
+  ['/opportunities', '', 'Opportunities', 'Hackathons, internships, and international programs, by deadline.'],
+  ['/clubs', '', 'Clubs', "See what a club's about and join straight from the page."],
+  ['/emergency', '', 'Emergency Help', "Every number you'd need in a hurry, in one place."],
+  ['/suggestions', '', 'Anonymous Suggestions', 'Say what needs fixing — no name attached.'],
+  ['/campus-updates', '', 'Campus Updates', 'University-wide events and announcements, always current.'],
 ];
 
 export default function Home() {
@@ -101,7 +101,7 @@ export default function Home() {
         <h2 className="section-title">Three portals. One login page.</h2>
         <div className="portal-grid">
           <div className="portal-card portal-student">
-            <div className="portal-icon">🎓</div>
+            
             <h3>Student Portal</h3>
             <p className="muted">
               Your dashboard, grade card, attendance record, complaints, upcoming tests,
@@ -118,7 +118,7 @@ export default function Home() {
             </Link>
           </div>
           <div className="portal-card portal-teacher">
-            <div className="portal-icon">🧑‍🏫</div>
+            
             <h3>Teacher Portal</h3>
             <p className="muted">
               Post announcements and events, mark attendance, assign work per student, and

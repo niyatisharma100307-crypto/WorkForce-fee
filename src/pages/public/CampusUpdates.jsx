@@ -46,7 +46,7 @@ export default function CampusUpdates() {
                 <h4 className="mt-16" style={{ fontSize: 16 }}>
                   {e.title}
                 </h4>
-                <p className="small muted mt-8">📍 {e.location}</p>
+                <p className="small muted mt-8"> {e.location}</p>
                 <p className="small mt-16">{e.desc}</p>
               </div>
             ))

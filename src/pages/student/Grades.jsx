@@ -31,17 +31,17 @@ export default function StudentGrades() {
       {latestGpa && (
         <div className="stat-row">
           <div className="stat-card stat-amber">
-            <div className="icon">🎯</div>
+            <div className="icon"></div>
             <div className="num">{latestGpa.sgpa.toFixed(2)}</div>
             <div className="label">SGPA — {latestGpa.term}</div>
           </div>
           <div className="stat-card stat-sage">
-            <div className="icon">🏆</div>
+            <div className="icon"></div>
             <div className="num">{latestGpa.cgpa.toFixed(2)}</div>
             <div className="label">CGPA (overall)</div>
           </div>
           <div className="stat-card stat-slate">
-            <div className="icon">📚</div>
+            <div className="icon"></div>
             <div className="num">{totalCredits}</div>
             <div className="label">Total credits</div>
           </div>
@@ -68,7 +68,7 @@ export default function StudentGrades() {
               <tr>
                 <td colSpan={5}>
                   <div className="empty-state">
-                    <div className="emoji">📊</div>
+                    
                     No grades posted yet. Check back after your next exam.
                   </div>
                 </td>

@@ -169,14 +169,14 @@ export default function Signup() {
           className={`role-btn ${role === 'student' ? 'active' : ''}`}
           onClick={() => switchRole('student')}
         >
-          <span className="emoji">🎓</span> Student
+           Student
         </button>
         <button
           type="button"
           className={`role-btn ${role === 'teacher' ? 'active' : ''}`}
           onClick={() => switchRole('teacher')}
         >
-          <span className="emoji">🧑‍🏫</span> Teacher
+           Teacher
         </button>
         {!contentManagerExists && (
           <button
@@ -184,7 +184,7 @@ export default function Signup() {
             className={`role-btn ${role === 'admin' ? 'active' : ''}`}
             onClick={() => switchRole('admin')}
           >
-            <span className="emoji">🛠️</span> Content Manager
+             Content Manager
           </button>
         )}
       </div>

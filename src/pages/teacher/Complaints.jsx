@@ -40,7 +40,7 @@ export default function TeacherComplaints() {
 
       {students.length === 0 && (
         <div className="empty-state mb-24">
-          <div className="emoji">🏫</div>
+          
           You aren't assigned to a class yet, so there are no complaints to review.
         </div>
       )}
@@ -59,7 +59,7 @@ export default function TeacherComplaints() {
 
       {visible.length === 0 ? (
         <div className="empty-state">
-          <div className="emoji">📮</div>
+          
           {filter === 'Open' ? 'No open complaints — all clear.' : 'Nothing here yet.'}
         </div>
       ) : (

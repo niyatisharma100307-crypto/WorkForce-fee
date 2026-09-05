@@ -3,36 +3,36 @@ import { useAuth } from './AuthContext.jsx';
 import { Store, classKeyOf } from '../store.js';
 
 const STUDENT_NAV = [
-  ['/student/dashboard', '🏠', 'Dashboard'],
-  ['/student/grades', '📊', 'Grade Card'],
-  ['/student/attendance', '✅', 'Attendance'],
-  ['/student/events', '🎉', 'Events'],
-  ['/student/complaints', '📮', 'Complaints'],
-  ['/student/tests', '📝', 'Upcoming Tests'],
-  ['/student/hackathon', '🚀', 'Hackathon Teams'],
-  ['/student/projects', '💡', 'Project Showcase'],
-  ['/student/timetable', '🗓️', 'Timetable'],
-  ['/student/assignments', '📎', 'Assignments'],
-  ['/student/exchange', '🛍️', 'Campus Exchange'],
-  ['/student/service-requests', '📄', 'Service Requests'],
-  ['/student/messages', '💬', 'Messages'],
+  ['/student/dashboard', '', 'Dashboard'],
+  ['/student/grades', '', 'Grade Card'],
+  ['/student/attendance', '', 'Attendance'],
+  ['/student/events', '', 'Events'],
+  ['/student/complaints', '', 'Complaints'],
+  ['/student/tests', '', 'Upcoming Tests'],
+  ['/student/hackathon', '', 'Hackathon Teams'],
+  ['/student/projects', '', 'Project Showcase'],
+  ['/student/timetable', '', 'Timetable'],
+  ['/student/assignments', '', 'Assignments'],
+  ['/student/exchange', '', 'Campus Exchange'],
+  ['/student/service-requests', '', 'Service Requests'],
+  ['/student/messages', '', 'Messages'],
 ];
 
 const ADMIN_NAV = [
-  ['/admin/content', '🛠️', 'Public Content'],
+  ['/admin/content', '', 'Public Content'],
 ];
 
 const TEACHER_NAV = [
-  ['/teacher/dashboard', '🏠', 'Dashboard'],
-  ['/teacher/roster', '👥', 'Add Students'],
-  ['/teacher/announcements', '📣', 'Announcements'],
-  ['/teacher/events', '🎉', 'Events'],
-  ['/teacher/attendance', '✅', 'Attendance'],
-  ['/teacher/grades', '📊', 'Grade Card'],
-  ['/teacher/timetable', '🗓️', 'Timetable'],
-  ['/teacher/complaints', '📮', 'Complaints'],
-  ['/teacher/assignments', '📎', 'Assignments'],
-  ['/teacher/messages', '💬', 'Conversations'],
+  ['/teacher/dashboard', '', 'Dashboard'],
+  ['/teacher/roster', '', 'Add Students'],
+  ['/teacher/announcements', '', 'Announcements'],
+  ['/teacher/events', '', 'Events'],
+  ['/teacher/attendance', '', 'Attendance'],
+  ['/teacher/grades', '', 'Grade Card'],
+  ['/teacher/timetable', '', 'Timetable'],
+  ['/teacher/complaints', '', 'Complaints'],
+  ['/teacher/assignments', '', 'Assignments'],
+  ['/teacher/messages', '', 'Conversations'],
 ];
 
 export default function Sidebar() {
@@ -105,7 +105,7 @@ export default function Sidebar() {
             color: 'var(--coral-deep)',
           }}
         >
-          <span className="icon">🚪</span> Log out
+          <span className="icon"></span> Log out
         </a>
       </div>
     </aside>

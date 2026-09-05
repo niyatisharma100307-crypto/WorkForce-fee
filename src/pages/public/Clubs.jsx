@@ -24,7 +24,7 @@ export default function Clubs() {
                 {c.category && <span className="tag tag-outline">{c.category}</span>}
               </div>
               <p className="small">{c.desc}</p>
-              {c.meets && <p className="small muted mt-16">🗓️ {c.meets}</p>}
+              {c.meets && <p className="small muted mt-16"> {c.meets}</p>}
               <a
                 href={c.formLink}
                 target="_blank"

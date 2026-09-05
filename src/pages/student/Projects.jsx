@@ -89,7 +89,7 @@ export default function StudentProjects() {
       <div className="grid-2">
         {visible.length === 0 ? (
           <div className="empty-state" style={{ gridColumn: '1/-1' }}>
-            <div className="emoji">💡</div>
+            
             No projects here yet — be the first to post one.
           </div>
         ) : (
@@ -112,12 +112,12 @@ export default function StudentProjects() {
               <div className="flex-gap mt-16" style={{ flexWrap: 'wrap' }}>
                 {p.github && (
                   <a href={p.github} target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-ghost">
-                    GitHub ↗
+                    GitHub 
                   </a>
                 )}
                 {p.demo && (
                   <a href={p.demo} target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-ghost">
-                    Live demo ↗
+                    Live demo 
                   </a>
                 )}
               </div>
@@ -126,7 +126,7 @@ export default function StudentProjects() {
                   className="small mt-16"
                   style={{ color: 'var(--sage-deep)', fontWeight: 600 }}
                 >
-                  🙋 Looking for: {p.rolesNeeded || 'teammates'}
+                   Looking for: {p.rolesNeeded || 'teammates'}
                 </div>
               )}
               <p className="small muted mt-8" style={{ fontSize: 11.5 }}>

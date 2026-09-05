@@ -56,7 +56,7 @@ export default function StudentHackathon() {
       <div className="grid-2">
         {teams.length === 0 ? (
           <div className="empty-state">
-            <div className="emoji">🚀</div>
+            
             No teams posted yet. Be the first!
           </div>
         ) : (
@@ -68,7 +68,7 @@ export default function StudentHackathon() {
                   {t.members}/{t.maxMembers} members
                 </span>
               </div>
-              <p className="small muted mt-8">🏁 {t.hackathon}</p>
+              <p className="small muted mt-8"> {t.hackathon}</p>
               <p className="small mt-16">
                 <strong>Looking for:</strong> {t.lookingFor}
               </p>

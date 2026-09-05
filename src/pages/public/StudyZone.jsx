@@ -20,7 +20,7 @@ export default function StudyZone() {
         <div className="grid-2">
           {spots.length === 0 ? (
             <div className="empty-state">
-              <div className="emoji">📖</div>
+              
               No spots listed yet.
             </div>
           ) : (
@@ -30,7 +30,7 @@ export default function StudyZone() {
                   <strong style={{ fontSize: 17 }}>{s.name}</strong>
                   <span className="tag tag-amber">{s.vibe}</span>
                 </div>
-                <p className="small muted">📍 {s.building}</p>
+                <p className="small muted"> {s.building}</p>
                 <p className="small mt-16">{s.desc}</p>
                 <div className="flex-gap mt-16" style={{ flexWrap: 'wrap' }}>
                   {s.amenities.map((a) => (

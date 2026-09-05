@@ -26,22 +26,22 @@ export default function TeacherDashboard() {
 
       <div className="stat-row">
         <div className="stat-card stat-sage">
-          <div className="icon">👥</div>
+          <div className="icon"></div>
           <div className="num">{students.length}</div>
           <div className="label">Students in your class</div>
         </div>
         <div className="stat-card stat-amber">
-          <div className="icon">📣</div>
+          <div className="icon"></div>
           <div className="num">{announcements.length}</div>
           <div className="label">Announcements posted</div>
         </div>
         <div className="stat-card stat-coral">
-          <div className="icon">📎</div>
+          <div className="icon"></div>
           <div className="num">{assignments.filter((a) => a.status === 'pending').length}</div>
           <div className="label">Assignments pending review</div>
         </div>
         <Link to="/teacher/complaints" className="stat-card stat-slate" style={{ display: 'block' }}>
-          <div className="icon">📮</div>
+          <div className="icon"></div>
           <div className="num">{complaints.length}</div>
           <div className="label">Open complaints</div>
         </Link>

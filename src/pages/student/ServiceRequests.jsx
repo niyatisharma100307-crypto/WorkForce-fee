@@ -60,7 +60,7 @@ export default function StudentServiceRequests() {
 
       {requests.length === 0 ? (
         <div className="empty-state">
-          <div className="emoji">📄</div>
+          
           No requests yet. Need a bonafide certificate or a new ID card? Start here.
         </div>
       ) : (

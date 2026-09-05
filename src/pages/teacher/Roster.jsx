@@ -103,7 +103,7 @@ export default function TeacherRoster() {
   const students = studentsForCourseClass(courseClass, group);
   const allowedGroups = courseClassGroups(courseClass).length ? courseClassGroups(courseClass) : ALL_GROUPS;
 
-  if (!teacherCourseClasses.length) return <><div className="app-header"><div><h1>Add Students</h1><div className="sub">Upload students for one specific course, class, group and year.</div></div></div><div className="empty-state"><div className="emoji">📚</div>No course classes are assigned to you yet.</div></>;
+  if (!teacherCourseClasses.length) return <><div className="app-header"><div><h1>Add Students</h1><div className="sub">Upload students for one specific course, class, group and year.</div></div></div><div className="empty-state">No course classes are assigned to you yet.</div></>;
 
   return <>
     <div className="app-header"><div><h1>Add Students</h1><div className="sub">Select the exact course, class, group and year before uploading the student list.</div></div></div>

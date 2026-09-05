@@ -40,7 +40,7 @@ export default function StudentAssignments() {
               <tr>
                 <td colSpan={5}>
                   <div className="empty-state">
-                    <div className="emoji">📎</div>
+                    
                     No assignments yet.
                   </div>
                 </td>

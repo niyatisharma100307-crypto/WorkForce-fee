@@ -14,7 +14,7 @@ export default function StudentEvents() {
       <div className="grid-2">
         {events.length === 0 ? (
           <div className="empty-state">
-            <div className="emoji">🎉</div>
+            
             No events posted yet.
           </div>
         ) : (
@@ -24,7 +24,7 @@ export default function StudentEvents() {
               <h3 className="mt-16" style={{ fontSize: 19 }}>
                 {e.title}
               </h3>
-              <p className="small muted mt-8">📍 {e.location}</p>
+              <p className="small muted mt-8"> {e.location}</p>
               <p className="small mt-16">{e.desc}</p>
               {e.formLink ? (
                 <a

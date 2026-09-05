@@ -26,11 +26,11 @@ export default function StudentTimetable() {
       </div>
 
       {courseClasses.length === 0 ? (
-        <div className="empty-state"><div className="emoji">🗓️</div>No course classes are assigned to you yet.</div>
+        <div className="empty-state">No course classes are assigned to you yet.</div>
       ) : (
       <><div className="panel mb-24"><div className="field" style={{ margin: 0, maxWidth: 680 }}><label>Course class</label><select value={courseClassId} onChange={(e) => setCourseClassId(e.target.value)}>{courseClasses.map((cc) => <option key={cc.id} value={cc.id}>{courseClassLabel(cc)}</option>)}</select><div className="field-hint">{courseClass?.classKey} · {courseClass?.course} · {group}</div></div></div>{!tt ? (
         <div className="empty-state">
-          <div className="emoji">🗓️</div>
+          
           No timetable has been set for this course class ({courseClass?.classKey} · {courseClass?.course} · {group}) yet. Check back once your
           teacher has added it.
         </div>

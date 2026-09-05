@@ -40,7 +40,7 @@ export default function CampusGuide() {
                 rel="noopener noreferrer"
                 className="btn btn-sm btn-ghost mt-16"
               >
-                Open in Maps ↗
+                Open in Maps 
               </a>
             </div>
           ))}

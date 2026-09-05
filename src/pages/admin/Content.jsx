@@ -4,10 +4,10 @@ import { useToast } from '../../components/Toast.jsx';
 import Modal from '../../components/Modal.jsx';
 
 const TYPES = [
-  ['events', '🎉', 'Events'],
-  ['clubs', '🎭', 'Clubs'],
-  ['opportunities', '🚀', 'Opportunities'],
-  ['campusUpdates', '📣', 'Campus Updates'],
+  ['events', '', 'Events'],
+  ['clubs', '', 'Clubs'],
+  ['opportunities', '', 'Opportunities'],
+  ['campusUpdates', '', 'Campus Updates'],
 ];
 const empty = { title: '', date: '', location: '', desc: '', formLink: '', category: '', meets: '', link: '', deadline: '' };
 
@@ -32,7 +32,7 @@ export default function AdminContent() {
   return <>
     <div className="app-header"><div><h1>Public Content</h1><div className="sub">This is the missing publishing role: a content manager maintains everything visitors see on the public dashboard.</div></div><button className="btn btn-primary" onClick={() => setOpen(true)}>+ Add content</button></div>
     <div className="panel"><div className="filter-row">{TYPES.map(([key, icon, label]) => <button key={key} className={`filter-chip ${type === key ? 'active' : ''}`} onClick={() => setType(key)}>{icon} {label}</button>)}</div><div className="small muted mt-8">Changes here appear on the public pages for {type === 'campusUpdates' ? 'Campus Updates' : TYPES.find((x) => x[0] === type)?.[2]}.</div></div>
-    <div className="grid-2">{items.length === 0 ? <div className="empty-state"><div className="emoji">📝</div>No content yet.</div> : items.slice().reverse().map((item) => <div className="card" key={item.id}><div className="flex-between"><span className="tag tag-amber">{item.date || item.deadline ? fmtDate(item.date || item.deadline) : item.category || 'Public'}</span><button className="btn btn-sm btn-ghost" onClick={() => del(item.id)}>Delete</button></div><h3 className="mt-16" style={{ fontSize: 18 }}>{item.title || item.name}</h3>{item.location && <p className="small muted mt-8">📍 {item.location}</p>}{item.meets && <p className="small muted mt-8">🗓️ {item.meets}</p>}<p className="small mt-16">{item.desc}</p>{item.formLink && <div className="small mono muted mt-8">{item.formLink}</div>}{item.link && <div className="small mono muted mt-8">{item.link}</div>}</div>)}</div>
+    <div className="grid-2">{items.length === 0 ? <div className="empty-state">No content yet.</div> : items.slice().reverse().map((item) => <div className="card" key={item.id}><div className="flex-between"><span className="tag tag-amber">{item.date || item.deadline ? fmtDate(item.date || item.deadline) : item.category || 'Public'}</span><button className="btn btn-sm btn-ghost" onClick={() => del(item.id)}>Delete</button></div><h3 className="mt-16" style={{ fontSize: 18 }}>{item.title || item.name}</h3>{item.location && <p className="small muted mt-8"> {item.location}</p>}{item.meets && <p className="small muted mt-8"> {item.meets}</p>}<p className="small mt-16">{item.desc}</p>{item.formLink && <div className="small mono muted mt-8">{item.formLink}</div>}{item.link && <div className="small mono muted mt-8">{item.link}</div>}</div>)}</div>
     <Modal open={open} onClose={() => setOpen(false)} title={`Add ${TYPES.find((x) => x[0] === type)?.[2]}`}><form onSubmit={submit}>
       <div className="field"><label>{type === 'clubs' ? 'Club name' : 'Title'}</label><input value={form.title} onChange={(e) => update('title', e.target.value)} required /></div>
       {(type === 'events' || type === 'campusUpdates') && <div className="field"><label>Date</label><input type="date" value={form.date} onChange={(e) => update('date', e.target.value)} required /></div>}

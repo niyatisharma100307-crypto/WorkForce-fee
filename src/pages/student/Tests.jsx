@@ -14,7 +14,7 @@ export default function StudentTests() {
       <div className="grid-2">
         {tests.length === 0 ? (
           <div className="empty-state">
-            <div className="emoji">📝</div>
+            
             No tests scheduled right now.
           </div>
         ) : (
@@ -24,7 +24,7 @@ export default function StudentTests() {
                 <strong style={{ fontSize: 17 }}>{t.subject}</strong>
                 <span className="tag tag-coral">{fmtDate(t.date)}</span>
               </div>
-              <p className="small muted mt-8">🕐 {t.time}</p>
+              <p className="small muted mt-8"> {t.time}</p>
               <p className="small mt-16">
                 <strong>Syllabus:</strong> {t.syllabus}
               </p>

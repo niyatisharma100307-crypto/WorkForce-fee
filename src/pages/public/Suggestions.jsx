@@ -55,7 +55,7 @@ export default function Suggestions() {
         <div className="wrap-narrow">
           {list.length === 0 ? (
             <div className="empty-state">
-              <div className="emoji">💬</div>
+              
               No suggestions yet.
             </div>
           ) : (

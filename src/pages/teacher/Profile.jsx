@@ -68,7 +68,7 @@ export default function TeacherProfile() {
   if (!teacher) {
     return (
       <div className="empty-state">
-        <div className="emoji">⚠️</div>
+        
         We couldn't find your teacher record. Try logging out and back in.
       </div>
     );

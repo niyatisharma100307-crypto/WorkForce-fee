@@ -55,7 +55,7 @@ export default function TeacherAnnouncements() {
 
       {list.length === 0 ? (
         <div className="empty-state">
-          <div className="emoji">📣</div>
+          
           Nothing posted yet.
         </div>
       ) : (

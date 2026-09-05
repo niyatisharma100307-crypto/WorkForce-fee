@@ -43,7 +43,7 @@ export default function Opportunities() {
         <div className="grid-2">
           {visible.length === 0 ? (
             <div className="empty-state" style={{ gridColumn: '1/-1' }}>
-              <div className="emoji">🚀</div>
+              
               Nothing in this category right now.
             </div>
           ) : (

@@ -42,7 +42,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="footer-bottom">
-          <span>© 2026 Workforce</span>
+          <span> 2026 Workforce</span>
           <span>MADE WITH REACT</span>
         </div>
       </div>
