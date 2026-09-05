@@ -85,70 +85,87 @@ WorkForce/
 ├── package.json
 ├── package-lock.json
 └── vite.config.js
+```
+
+
+```
 
 ## How to Run
 
 ### 1. Clone the repository
 
 ```bash
--git clone https://github.com/niyatisharma100307-crypto/WorkForce-fee.git
--cd WorkForce-fee
--npm install
--npm run dev
+git clone https://github.com/niyatisharma100307-crypto/WorkForce-fee.git
+```
+
+### 2. Open the project folder
+
+```bash
+cd WorkForce-fee
+```
+
+### 3. Install dependencies
+
+```bash
+npm install
+```
+
+### 4. Start the development server
+
+```bash
+npm run dev
+```
+
 Open the local URL provided by Vite in your browser.
-What We Learned
+
+## What We Learned
 
 While developing WorkForce, we got practical experience with:
 
-React components
-React Router
-State management
-Forms and validation
-Conditional rendering
-Local Storage
-Reusable components
-Responsive CSS
-Role-based pages
-Git and GitHub
-Organizing a React project
-Future Improvements
+- React components
+- React Router
+- State management
+- Forms and validation
+- Conditional rendering
+- Local Storage
+- Reusable components
+- Responsive CSS
+- Role-based pages
+- Git and GitHub
+- Organizing a React project
+
+## Future Improvements
 
 The current version mainly focuses on the frontend. In the future, we would like to:
 
-Connect the application to a backend
-Add a proper database
-Improve authentication and security
-Add real-time messaging
-Add notifications
-Add more dashboard features
-Deploy the complete application
-Project Status
+- Connect the application to a backend
+- Add a proper database
+- Improve authentication and security
+- Add real-time messaging
+- Add notifications
+- Add more dashboard features
+- Deploy the complete application
 
-This project was developed as part of our 2nd Year Front-End Engineering (FEE) coursework.
+## Project Status
+
+This project was developed as part of our **2nd Year Front-End Engineering (FEE)** coursework.
 
 The current version includes the main frontend pages and application flow for students, teachers and public users.
 
-Team
-Team ID: G11-PID-18
+## Team
 
-Team Members
-Niyati Sharma
-Parth Jangra
-Kunal Arora
-Yashvi Singla
+**Team ID:** G11-PID-18
 
+### Team Members
 
+- Niyati Sharma
+- Parth Jangra
+- Kunal Arora
+- Yashvi Singla
 
+---
 
-
-
-
-
-
-
-
-
-
+**Made as a 2nd Year FEE Project**
 
 
 
