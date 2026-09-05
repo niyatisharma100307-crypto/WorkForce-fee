@@ -1,8 +1,8 @@
- WORKFORCE  
+# WORKFORCE
 
 WorkForce is a web-based student and teacher management platform developed as a **2nd Year Front-End Engineering (FEE) project**.
 
-The main idea behind WorkForce is to bring commonly used academic and student-related services into one place. Instead of using different pages or platforms for attendance, grades, assignments, timetables, events, clubs and opportunities, these features are organized within a single application.
+The main idea behind WorkForce is to bring commonly used academic and student-related services into one place. Instead of using different platforms for attendance, grades, assignments, timetables, events, clubs and opportunities, these features are organized within a single application.
 
 ## Why We Made This
 
@@ -64,7 +64,7 @@ The public part of the website can be accessed without logging in.
 
 ## Project Structure
 
-
+```text
 WorkForce/
 │
 ├── public/
@@ -86,28 +86,17 @@ WorkForce/
 ├── package-lock.json
 └── vite.config.js
 
+## How to Run
 
---How to Run
+### 1. Clone the repository
 
-Clone the repository:
-
---git clone <repository-link>
-
-Open the project folder:
-
---cd WorkForce
-
-Install the dependencies:
-
---npm install
-
-Start the development server:
-
---npm run dev
-
-Open the local URL shown by Vite in your browser.
-
---What We Learned
+```bash
+-git clone https://github.com/niyatisharma100307-crypto/WorkForce-fee.git
+-cd WorkForce-fee
+-npm install
+-npm run dev
+Open the local URL provided by Vite in your browser.
+What We Learned
 
 While developing WorkForce, we got practical experience with:
 
@@ -121,11 +110,10 @@ Reusable components
 Responsive CSS
 Role-based pages
 Git and GitHub
-Organizing a larger React project
+Organizing a React project
+Future Improvements
 
---Future Improvements
-
-This project currently focuses mainly on the frontend. Some improvements we would like to make in the future are:
+The current version mainly focuses on the frontend. In the future, we would like to:
 
 Connect the application to a backend
 Add a proper database
@@ -134,21 +122,49 @@ Add real-time messaging
 Add notifications
 Add more dashboard features
 Deploy the complete application
-
---Project Status
+Project Status
 
 This project was developed as part of our 2nd Year Front-End Engineering (FEE) coursework.
 
-The current version contains the main frontend pages and application flow for students, teachers and public users.
+The current version includes the main frontend pages and application flow for students, teachers and public users.
 
 Team
+Team ID: G11-PID-18
 
-Developed by: G11-PID-18(TEAM ID)
+Team Members
+Niyati Sharma
+Parth Jangra
+Kunal Arora
+Yashvi Singla
 
-Team Member 1-Niyati Sharma
-Team Member 2-Parth Jangra
-Team Member 3-Kunal Arora
-Team Member 4-Yashvi Singla
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
