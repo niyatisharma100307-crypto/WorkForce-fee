@@ -48,7 +48,7 @@
   font-weight: 600;
   color: var(--slate);
 }
-.side-links a:hover { background: rgba(27,27,47,0.06); color: var(--ink); }
+.side-links a:hover { background: rgba(27,27,47,0.08); color: var(--ink); }
 .side-links a.active { background: var(--ink); color: var(--paper); }
 .side-links .icon { width: 18px; text-align: center; }
 
@@ -91,6 +91,14 @@
   margin-bottom: 24px;
   box-shadow: var(--shadow-card);
 }
+.panel {
+  transition: box-shadow 0.15s ease;
+}
+
+.panel:hover {
+  box-shadow: 0 4px 0 var(--line-strong), 0 12px 28px -14px rgba(27,27,47,0.3);
+}
+
 .panel-head {
   display: flex;
   justify-content: space-between;
