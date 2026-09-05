@@ -1,12 +1,11 @@
 const GUIDE_SPOTS = [
-  { name: 'Main Academic Block', desc: "Lecture halls for 1st & 2nd year, exam control room, and the dean's office on the ground floor.", tag: 'On campus', map: 'https://maps.google.com' },
-  { name: 'Central Library', desc: 'Four floors — silent zone on top, group discussion rooms on the 2nd floor. 24/7 during exams.', tag: 'On campus', map: 'https://maps.google.com' },
-  { name: 'Hostel Block C', desc: "Boys' hostel, rooms 201–450. Warden's office near the main gate.", tag: 'On campus', map: 'https://maps.google.com' },
-  { name: 'Sports Complex', desc: 'Football ground, basketball courts, and the indoor badminton hall.', tag: 'On campus', map: 'https://maps.google.com' },
-  { name: 'Cafeteria & Food Court', desc: 'Main mess plus 4 food stalls — opens 7:30 AM, closes 10 PM.', tag: 'On campus', map: 'https://maps.google.com' },
-  { name: 'ATM — State Bank', desc: '2 minute walk from the main gate, right next to the stationery shop.', tag: 'Nearby', map: 'https://maps.google.com' },
-  { name: 'City Pharmacy', desc: 'Open till midnight, right across the main gate.', tag: 'Nearby', map: 'https://maps.google.com' },
-  { name: 'Metro Station', desc: '10 minute walk or a 3-minute auto ride from the back gate.', tag: 'Nearby', map: 'https://maps.google.com' },
+  { name: 'Main Academic Block', desc: "Lecture halls for 1st & 2nd year, exam control room, and the dean's office on the ground floor.", tag: 'On campus', map: 'https://maps.app.goo.gl/49vhpno2DLp65iLh8' },
+  { name: 'Central Library', desc: 'Four floors — silent zone on top, group discussion rooms on the 2nd floor. 24/7 during exams.', tag: 'On campus', map: 'https://maps.app.goo.gl/g3hna98RXrxd4YwFA' },
+  { name: 'Turing Block', desc: "Main Block for Students in B.E Course.", tag: 'On campus', map: 'https://maps.app.goo.gl/WLyGws4yYiQoydy28' },
+  { name: 'Office of International Affairs', desc: 'For all Students in Exchange and International programs.', tag: 'On campus', map: 'https://maps.app.goo.gl/DhNayt1vZtArADAfA' },
+  { name: 'Square 1', desc: '24/7 Open Square for different Cuisine Outlets.', tag: 'On campus', map: 'https://maps.app.goo.gl/eGZcPTu4qwwRHxTq9' },
+  { name: 'Girls Hostel', desc: 'Living and Mess Facilites for Girls of the Campus.', tag: 'On campus', map: 'https://maps.app.goo.gl/aq7HFyiizdciSccT8' },
+  { name: 'Boys Hostel', desc: 'Living and Mess Facilites for Boys of the Campus.', tag: 'On campus', map: 'https://maps.app.goo.gl/B9ArxS6LEjBB7rUCA' },
 ];
 
 export default function CampusGuide() {
@@ -40,7 +39,7 @@ export default function CampusGuide() {
                 rel="noopener noreferrer"
                 className="btn btn-sm btn-ghost mt-16"
               >
-                Open in Maps 
+                Open in Maps
               </a>
             </div>
           ))}
