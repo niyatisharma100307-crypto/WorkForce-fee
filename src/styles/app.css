@@ -1,6 +1,4 @@
-/* ============================================
-   App shell — dashboard layout for logged-in portals
-   ============================================ */
+
 
 .app-shell {
   display: grid;
@@ -39,7 +37,7 @@
 .who-name { font-weight: 700; font-size: 14px; line-height: 1.25; }
 .who-role { font-size: 11px; color: var(--slate); font-family: var(--font-mono); }
 
-.side-links { display: flex; flex-direction: column; gap: 3px; }
+.side-links { display: flex; flex-direction: column; gap: 5px; }
 .side-links a {
   display: flex;
   align-items: center;
