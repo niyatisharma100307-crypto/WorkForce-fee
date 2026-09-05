@@ -117,6 +117,34 @@ export default function StudentDashboard() {
         <div>
           <div className="panel">
             <div className="panel-head">
+              <h3>Faculty announcements</h3>
+              <Link to="/student/announcements" className="btn btn-sm btn-ghost">
+                See all
+              </Link>
+            </div>
+            {Store.get('announcements').length === 0 ? (
+              <div className="empty-state small">No announcements posted yet.</div>
+            ) : (
+              Store.get('announcements')
+                .slice()
+                .reverse()
+                .slice(0, 3)
+                .map((a) => (
+                  <div className="list-item" key={a.id}>
+                    <div className="bullet" style={{ background: 'var(--amber)' }}></div>
+                    <div>
+                      <div className="li-title">{a.title}</div>
+                      <div className="li-meta">
+                        {fmtDate(a.date)} · {a.body.slice(0, 60)}{a.body.length > 60 ? '...' : ''}
+                      </div>
+                    </div>
+                  </div>
+                ))
+            )}
+          </div>
+
+          <div className="panel">
+            <div className="panel-head">
               <h3>Campus events</h3>
             </div>
             {events.slice(0, 3).map((e) => (

@@ -21,6 +21,7 @@ import StudentDashboard from './pages/student/Dashboard.jsx';
 import StudentGrades from './pages/student/Grades.jsx';
 import StudentAttendance from './pages/student/Attendance.jsx';
 import StudentEvents from './pages/student/Events.jsx';
+import StudentAnnouncements from './pages/student/Announcements.jsx';
 import StudentComplaints from './pages/student/Complaints.jsx';
 import StudentTests from './pages/student/Tests.jsx';
 import StudentHackathon from './pages/student/Hackathon.jsx';
@@ -75,6 +76,7 @@ export default function App() {
         <Route path="/student/grades" element={<StudentGrades />} />
         <Route path="/student/attendance" element={<StudentAttendance />} />
         <Route path="/student/events" element={<StudentEvents />} />
+        <Route path="/student/announcements" element={<StudentAnnouncements />} />
         <Route path="/student/complaints" element={<StudentComplaints />} />
         <Route path="/student/tests" element={<StudentTests />} />
         <Route path="/student/hackathon" element={<StudentHackathon />} />

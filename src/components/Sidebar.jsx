@@ -7,6 +7,7 @@ const STUDENT_NAV = [
   ['/student/grades', '', 'Grade Card'],
   ['/student/attendance', '', 'Attendance'],
   ['/student/events', '', 'Events'],
+  ['/student/announcements', '', 'Announcements'],
   ['/student/complaints', '', 'Complaints'],
   ['/student/tests', '', 'Upcoming Tests'],
   ['/student/hackathon', '', 'Hackathon Teams'],
