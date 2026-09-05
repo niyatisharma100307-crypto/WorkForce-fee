@@ -10,8 +10,6 @@ const STUDENT_NAV = [
   ['/student/announcements', '', 'Announcements'],
   ['/student/complaints', '', 'Complaints'],
   ['/student/tests', '', 'Upcoming Tests'],
-  ['/student/hackathon', '', 'Hackathon Teams'],
-  ['/student/projects', '', 'Project Showcase'],
   ['/student/timetable', '', 'Timetable'],
   ['/student/assignments', '', 'Assignments'],
   ['/student/exchange', '', 'Campus Exchange'],

@@ -24,11 +24,9 @@ import StudentEvents from './pages/student/Events.jsx';
 import StudentAnnouncements from './pages/student/Announcements.jsx';
 import StudentComplaints from './pages/student/Complaints.jsx';
 import StudentTests from './pages/student/Tests.jsx';
-import StudentHackathon from './pages/student/Hackathon.jsx';
 import StudentTimetable from './pages/student/Timetable.jsx';
 import StudentAssignments from './pages/student/Assignments.jsx';
 import StudentMessages from './pages/student/Messages.jsx';
-import StudentProjects from './pages/student/Projects.jsx';
 import StudentExchange from './pages/student/Exchange.jsx';
 import StudentServiceRequests from './pages/student/ServiceRequests.jsx';
 import StudentProfile from './pages/student/Profile.jsx';
@@ -79,11 +77,9 @@ export default function App() {
         <Route path="/student/announcements" element={<StudentAnnouncements />} />
         <Route path="/student/complaints" element={<StudentComplaints />} />
         <Route path="/student/tests" element={<StudentTests />} />
-        <Route path="/student/hackathon" element={<StudentHackathon />} />
         <Route path="/student/timetable" element={<StudentTimetable />} />
         <Route path="/student/assignments" element={<StudentAssignments />} />
         <Route path="/student/messages" element={<StudentMessages />} />
-        <Route path="/student/projects" element={<StudentProjects />} />
         <Route path="/student/exchange" element={<StudentExchange />} />
         <Route path="/student/service-requests" element={<StudentServiceRequests />} />
         <Route path="/student/profile" element={<StudentProfile />} />

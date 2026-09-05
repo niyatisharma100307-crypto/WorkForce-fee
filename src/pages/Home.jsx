@@ -104,14 +104,14 @@ export default function Home() {
             
             <h3>Student Portal</h3>
             <p className="muted">
-              Your dashboard, grade card, attendance record, complaints, upcoming tests,
-              hackathon team search, and weekly timetable.
+              Your dashboard, grade card, attendance record, announcements, complaints, upcoming tests,
+              and weekly timetable.
             </p>
             <ul className="portal-list">
               <li>Personal dashboard</li>
               <li>Grade card & attendance</li>
               <li>Events & complaints</li>
-              <li>Hackathon team finder</li>
+              <li>Assignments & announcements</li>
             </ul>
             <Link to="/login" className="btn btn-primary btn-block">
               Student login
