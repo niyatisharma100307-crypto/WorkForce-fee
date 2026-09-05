@@ -24,7 +24,7 @@ WorkForce was developed as an academic project to practice our frontend developm
 - Messages
 - Complaints
 - Service requests
-- Hackathon and project sections
+- Announcements
 - Student profile
 
 ### Teacher Portal
