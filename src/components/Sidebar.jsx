@@ -82,12 +82,13 @@ export default function Sidebar() {
       <nav className="side-links">
         {nav.map(([to, icon, label]) => (
           <NavLink key={to} to={to} className={({ isActive }) => (isActive ? 'active' : '')}>
-            <span className="icon">{icon}</span> {label}
+            {icon ? <span className="icon">{icon}</span> : null}
+            <span>{label}</span>
           </NavLink>
         ))}
       </nav>
 
-      <div style={{ marginTop: 20, paddingTop: 16, borderTop: '2px dashed var(--line-strong)' }}>
+      <div style={{ marginTop: 20, paddingTop: 16, borderTop: '2px dashed var(--line-strong)', display: 'flex', justifyContent: 'center' }}>
         <a
           href="#"
           onClick={(e) => {
@@ -95,16 +96,17 @@ export default function Sidebar() {
             handleLogout();
           }}
           style={{
-            display: 'flex',
+            display: 'inline-flex',
             alignItems: 'center',
-            gap: 10,
+            justifyContent: 'center',
             padding: '10px 12px',
             fontSize: 14,
             fontWeight: 600,
             color: 'var(--coral-deep)',
+            textAlign: 'center',
           }}
         >
-          <span className="icon"></span> Log out
+          Log out
         </a>
       </div>
     </aside>

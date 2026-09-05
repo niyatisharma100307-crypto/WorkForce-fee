@@ -43,6 +43,8 @@
 .side-links a {
   display: flex;
   align-items: center;
+  justify-content: center;
+  text-align: center;
   gap: 10px;
   padding: 10px 12px;
   border-radius: var(--radius-sm);
