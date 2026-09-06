@@ -2314,9 +2314,9 @@ const DEFAULT_DB = {
   ],
 
   notes: [
-    { id: 'n1', year: '2nd Year', subject: 'Data Structures', title: 'Unit 2 — Trees & Graphs (handwritten)', uploader: 'Ishita Rao', date: '2026-08-10' },
-    { id: 'n2', year: '2nd Year', subject: 'DBMS', title: 'Normalization cheat-sheet', uploader: 'Aarav Mehta', date: '2026-08-05' },
-    { id: 'n3', year: '1st Year', subject: 'Maths I', title: 'Full semester notes', uploader: 'Karan Bose', date: '2026-07-20' },
+    { id: 'n1', year: '2nd Year', subject: 'Data Structures', title: 'Unit 2 — Trees & Graphs (handwritten)', uploader: 'Ishita Rao', date: '2026-08-10', link: 'https://github.com/Har-Jass/Data-Structures-Handwritten-Notes/blob/main/9_Trees_DS.pdf' },
+    { id: 'n2', year: '2nd Year', subject: 'DBMS', title: 'Normalization cheat-sheet', uploader: 'Aarav Mehta', date: '2026-08-05', link: 'https://sqlcheat.com/cheat-sheets/sql-functions-operators-cheat-sheet/' },
+    { id: 'n3', year: '1st Year', subject: 'Maths I', title: 'Full semester notes', uploader: 'Karan Bose', date: '2026-07-20', link: 'https://tutorial.math.lamar.edu/' },
   ],
 
   suggestions: [
@@ -2434,6 +2434,15 @@ function readDb() {
     if (!Object.prototype.hasOwnProperty.call(db, 'rememberedLogin')) db.rememberedLogin = null;
     if (!Array.isArray(db.courseClasses)) db.courseClasses = [];
     if (!Array.isArray(db.enrollments)) db.enrollments = [];
+
+    // Ensure seed notes have active links
+    if (Array.isArray(db.notes)) {
+      db.notes.forEach((n) => {
+        if (n.id === 'n1' && !n.link) n.link = 'https://github.com/Har-Jass/Data-Structures-Handwritten-Notes/blob/main/9_Trees_DS.pdf';
+        if (n.id === 'n2' && !n.link) n.link = 'https://sqlcheat.com/cheat-sheets/sql-functions-operators-cheat-sheet/';
+        if (n.id === 'n3' && !n.link) n.link = 'https://tutorial.math.lamar.edu/';
+      });
+    }
 
     // Ensure every teacher who already has a class assignment also has at least
     // one usable Course Class. Older accounts stored only the broad class key,

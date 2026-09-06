@@ -1,8 +1,14 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { Store, fmtDate } from '../../store.js';
 import { useToast } from '../../components/Toast.jsx';
 
 const YEARS = ['All', '1st Year', '2nd Year', '3rd Year', '4th Year'];
+
+const DEFAULT_LINKS = {
+  n1: 'https://github.com/Har-Jass/Data-Structures-Handwritten-Notes/blob/main/9_Trees_DS.pdf',
+  n2: 'https://sqlcheat.com/cheat-sheets/sql-functions-operators-cheat-sheet/',
+  n3: 'https://tutorial.math.lamar.edu/',
+};
 
 export default function JuniorHub() {
   const toast = useToast();
@@ -14,7 +20,7 @@ export default function JuniorHub() {
   const [subject, setSubject] = useState('');
   const [title, setTitle] = useState('');
   const [uploaderName, setUploaderName] = useState('');
-  const fileRef = useRef(null);
+  const [link, setLink] = useState('');
 
   function refreshNotes() {
     setNotes(Store.get('notes').slice().reverse());
@@ -22,19 +28,19 @@ export default function JuniorHub() {
 
   function handleNotesSubmit(e) {
     e.preventDefault();
-    const file = fileRef.current?.files?.[0];
     Store.push('notes', {
       id: Store.uid('n'),
       year,
       subject: subject.trim(),
-      title: title.trim() + (file ? ` (${file.name})` : ''),
+      title: title.trim(),
       uploader: uploaderName.trim(),
+      link: link.trim(),
       date: new Date().toISOString().slice(0, 10),
     });
     setSubject('');
     setTitle('');
     setUploaderName('');
-    if (fileRef.current) fileRef.current.value = '';
+    setLink('');
     toast('Notes added to Junior Hub');
     refreshNotes();
   }
@@ -149,13 +155,16 @@ export default function JuniorHub() {
               />
             </div>
             <div className="field">
-              <label>PDF file</label>
-              <div className="upload-box">
-                <input type="file" accept="application/pdf" ref={fileRef} style={{ margin: '0 auto' }} />
-                <div className="field-hint mt-8">
-                  This is a frontend demo — the file name is saved, not the file itself. Real
-                  uploads come with the backend.
-                </div>
+              <label>Upload Link</label>
+              <input
+                type="url"
+                placeholder="https://drive.google.com/..."
+                value={link}
+                onChange={(e) => setLink(e.target.value)}
+                required
+              />
+              <div className="field-hint mt-8">
+                Paste a link to Google Drive, Notion, GitHub, or online resource.
               </div>
             </div>
             <button type="submit" className="btn btn-primary">
@@ -182,7 +191,6 @@ export default function JuniorHub() {
         <div className="grid-3" style={{ marginBottom: 48 }}>
           {visibleNotes.length === 0 ? (
             <div className="empty-state" style={{ gridColumn: '1/-1' }}>
-              
               No notes here yet — be the first to add some.
             </div>
           ) : (
@@ -198,9 +206,20 @@ export default function JuniorHub() {
                 </p>
                 <button
                   className="btn btn-sm btn-ghost mt-16"
-                  onClick={() => toast('This is a demo — real downloads need the backend')}
+                  onClick={() => {
+                    const targetLink = n.link || DEFAULT_LINKS[n.id];
+                    if (targetLink) {
+                      window.open(
+                        targetLink.startsWith('http') ? targetLink : `https://${targetLink}`,
+                        '_blank',
+                        'noopener,noreferrer'
+                      );
+                    } else {
+                      toast('This is a demo link — real resource links will open in a new tab');
+                    }
+                  }}
                 >
-                  Download PDF
+                  Open Link
                 </button>
               </div>
             ))
