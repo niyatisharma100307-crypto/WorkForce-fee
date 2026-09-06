@@ -1,11 +1,8 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Store, allClassKeys, ALL_GROUPS, subjectsForClass } from '../store.js';
+import { Store, allClassKeys, ALL_GROUPS, subjectsForClass, KNOWN_BRANCHES, YEARS } from '../store.js';
 import { useAuth } from '../components/AuthContext.jsx';
 import { useToast } from '../components/Toast.jsx';
-
-const KNOWN_BRANCHES = ['CSE', 'ECE', 'IT', 'MECH', 'CIVIL', 'Other'];
-const YEARS = ['1st Year', '2nd Year', '3rd Year', '4th Year'];
 
 export default function Signup() {
   const [role, setRole] = useState('student');
@@ -25,7 +22,7 @@ export default function Signup() {
   const [teacherCustomBranch, setTeacherCustomBranch] = useState('');
   const [selectedClasses, setSelectedClasses] = useState(['CSE-1st Year']);
   const [activeClassTab, setActiveClassTab] = useState('CSE-1st Year');
-  const [selectedGroups, setSelectedGroups] = useState([]);
+  const [classGroups, setClassGroups] = useState({});
   const [selectedCourseClasses, setSelectedCourseClasses] = useState([]);
 
   function handleTeacherYearChange(newYear) {
@@ -60,6 +57,7 @@ export default function Signup() {
       if (activeClassTab === classKey) {
         setActiveClassTab(nextClasses[0]);
       }
+      setSelectedCourseClasses((prev) => prev.filter((x) => x.classKey !== classKey));
     }
   }
 
@@ -88,8 +86,13 @@ export default function Signup() {
     );
   }
 
-  function toggleGroup(g) {
-    setSelectedGroups((prev) => (prev.includes(g) ? prev.filter((x) => x !== g) : [...prev, g]));
+  function toggleClassGroup(classKey, g) {
+    if (!classKey) return;
+    setClassGroups((prev) => {
+      const current = prev[classKey] || [];
+      const next = current.includes(g) ? current.filter((x) => x !== g) : [...current, g];
+      return { ...prev, [classKey]: next };
+    });
   }
 
   function toggleCourseClass(classKey, course) {
@@ -140,6 +143,7 @@ export default function Signup() {
     }
 
     const finalBranch = branch === 'Other' ? customBranch.trim() || 'Undeclared' : branch;
+    const allTeacherGroups = [...new Set(Object.values(classGroups).flat())];
 
     const newUser =
       role === 'student'
@@ -159,26 +163,26 @@ export default function Signup() {
             password: pass,
             dept: dept.trim() || 'Undeclared',
             classes: selectedClasses,
-            groups: selectedGroups,
+            groups: allTeacherGroups,
+            classGroups: classGroups,
           }
         : { id: id.trim(), name: name.trim(), password: pass };
 
     Store.push(table, newUser);
 
-    // A teacher's selected class + subject becomes an actual Course Class.
-    // This is the common scope used by Add Students, Attendance, Grades, Timetable and Conversations.
     if (role === 'teacher') {
       const courseClasses = Store.get('courseClasses') || [];
       selectedCourseClasses.forEach(({ classKey, course }) => {
         const exists = courseClasses.some((cc) => cc.teacherId === newUser.id && cc.classKey === classKey && cc.course === course);
         if (!exists) {
+          const groupsForThisClass = classGroups[classKey] || [];
           courseClasses.push({
             id: Store.uid('cc'),
             teacherId: newUser.id,
             classKey,
             course,
             section: 'A',
-            groups: [...selectedGroups],
+            groups: [...groupsForThisClass],
             studentIds: [],
           });
         }
@@ -478,39 +482,56 @@ export default function Signup() {
               </div>
 
               <div className="field">
-                <label>Restrict to specific groups (optional)</label>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-                  {ALL_GROUPS.map((g) => (
-                    <label
-                      key={g}
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: 6,
-                        border: '2px solid var(--line-strong)',
-                        borderRadius: 999,
-                        padding: '6px 12px',
-                        fontSize: 13,
-                        fontWeight: 600,
-                        cursor: 'pointer',
-                        background: selectedGroups.includes(g) ? 'var(--sage)' : '#fff',
-                        color: selectedGroups.includes(g) ? '#fff' : 'inherit',
-                      }}
-                    >
-                      <input
-                        type="checkbox"
-                        checked={selectedGroups.includes(g)}
-                        onChange={() => toggleGroup(g)}
-                        style={{ width: 'auto' }}
-                      />
-                      {g}
-                    </label>
-                  ))}
-                </div>
-                <div className="field-hint mt-8">
-                  Leave all unchecked to see your whole class. Only check groups if you're a
-                  lab/tutorial instructor for specific batches.
-                </div>
+                {(() => {
+                  const currentTab = selectedClasses.includes(activeClassTab) ? activeClassTab : (selectedClasses[0] || '');
+                  const currentTabGroups = currentTab ? (classGroups[currentTab] || []) : [];
+                  return (
+                    <>
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
+                        <label style={{ margin: 0 }}>Restrict to specific groups (optional)</label>
+                        {currentTab && (
+                          <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--muted)', background: 'var(--bg-subtle)', padding: '2px 8px', borderRadius: 6 }}>
+                            Configuring for: <strong>{currentTab}</strong>
+                          </span>
+                        )}
+                      </div>
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                        {ALL_GROUPS.map((g) => {
+                          const isChecked = currentTabGroups.includes(g);
+                          return (
+                            <label
+                              key={g}
+                              style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: 6,
+                                border: '2px solid var(--line-strong)',
+                                borderRadius: 999,
+                                padding: '6px 12px',
+                                fontSize: 13,
+                                fontWeight: 600,
+                                cursor: 'pointer',
+                                background: isChecked ? 'var(--sage)' : '#fff',
+                                color: isChecked ? '#fff' : 'inherit',
+                              }}
+                            >
+                              <input
+                                type="checkbox"
+                                checked={isChecked}
+                                onChange={() => toggleClassGroup(currentTab, g)}
+                                style={{ width: 'auto' }}
+                              />
+                              {g}
+                            </label>
+                          );
+                        })}
+                      </div>
+                      <div className="field-hint mt-8">
+                        Leave all unchecked to see your whole class for <strong>{currentTab || 'each class'}</strong>. Only check groups if you're a lab/tutorial instructor for specific batches in this class.
+                      </div>
+                    </>
+                  );
+                })()}
               </div>
             </div>
           ) : (

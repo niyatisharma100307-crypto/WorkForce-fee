@@ -37,13 +37,17 @@ export default function TeacherRoster() {
     const studentIds = new Set(Array.isArray(current.studentIds) ? current.studentIds : []);
     let next = Math.max(100, ...db.map((s) => parseInt(String(s.id).replace(/\D/g, ''), 10) || 0)) + 1;
     const created = [];
+    const allowedGroupsForCC = courseClassGroups(current);
 
     records.forEach((r, i) => {
       const name = String(r.name || '').trim();
       if (!name) return;
       const studentGroup = String(r.group || group).trim() || group;
-      // Never allow a row for another group into the selected course-class group.
+
+      // Strict validation: student group must be allowed for this course class and match current group view
+      if (allowedGroupsForCC.length > 0 && !allowedGroupsForCC.includes(studentGroup)) return;
       if (studentGroup !== group) return;
+
       let student = db.find((s) => s.id === r.id) || db.find((s) => s.name.toLowerCase() === name.toLowerCase() && classKeyOf(s) === current.classKey);
       if (!student) {
         const [branch, ...yearParts] = current.classKey.split('-');
@@ -63,6 +67,10 @@ export default function TeacherRoster() {
       }
       created.push({ ...student, group: studentGroup });
     });
+
+    if (created.length === 0) {
+      return toast(`No students added. Make sure student group matches an allowed group (${allowedGroupsForCC.join(', ') || 'All'}) for ${current.classKey}.`);
+    }
 
     current.studentIds = Array.from(studentIds);
     Store.set('students', db);

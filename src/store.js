@@ -2563,6 +2563,8 @@ export function allClassKeys() {
   return [...new Set([...fromStudents, ...fromTimetable])].sort();
 }
 
+export const KNOWN_BRANCHES = ['CSE', 'ECE', 'IT', 'MECH', 'CIVIL', 'Other'];
+export const YEARS = ['1st Year', '2nd Year', '3rd Year', '4th Year'];
 export const ALL_GROUPS = ['G1', 'G2', 'G3', 'G4', 'G5', 'G6', 'G7', 'G8', 'G9', 'G10'];
 
 /** The class keys a given teacher is assigned to teach. */
@@ -2571,9 +2573,13 @@ export function getTeacherClasses(teacherId) {
   return teacher?.classes ?? [];
 }
 
-export function getTeacherGroups(teacherId) {
+export function getTeacherGroups(teacherId, classKey = null) {
   const teacher = Store.get('teachers').find((t) => t.id === teacherId);
-  return teacher?.groups ?? [];
+  if (!teacher) return [];
+  if (classKey && teacher.classGroups && teacher.classGroups[classKey]) {
+    return teacher.classGroups[classKey];
+  }
+  return teacher.groups ?? [];
 }
 
 export function studentsInClasses(classKeys) {
@@ -2593,7 +2599,7 @@ export function rosterForTeacherInClass(teacherId, classKey) {
   const classes = getTeacherClasses(teacherId);
   if (!classes.includes(classKey)) return [];
   const inClass = studentsInClasses([classKey]);
-  const groups = getTeacherGroups(teacherId);
+  const groups = getTeacherGroups(teacherId, classKey);
   if (!groups || groups.length === 0) return inClass;
   return inClass.filter((s) => groups.includes(s.group));
 }
