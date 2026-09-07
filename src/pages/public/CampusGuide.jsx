@@ -6,6 +6,19 @@ const GUIDE_SPOTS = [
   { name: 'Square 1', desc: '24/7 Open Square for different Cuisine Outlets.', tag: 'On campus', map: 'https://maps.app.goo.gl/eGZcPTu4qwwRHxTq9' },
   { name: 'Girls Hostel', desc: 'Living and Mess Facilites for Girls of the Campus.', tag: 'On campus', map: 'https://maps.app.goo.gl/aq7HFyiizdciSccT8' },
   { name: 'Boys Hostel', desc: 'Living and Mess Facilites for Boys of the Campus.', tag: 'On campus', map: 'https://maps.app.goo.gl/B9ArxS6LEjBB7rUCA' },
+  {
+    name: 'Sportorium',
+    desc: 'Facilities for indoor and outdoor sports, fitness activities, and student recreation.',
+    tag: 'On campus',
+    map: 'https://maps.app.goo.gl/LDhgyn6f8nFsU3nKA'
+  },
+
+  {
+    name: 'Dispensary',
+    desc: 'Basic medical assistance and first-aid facilities available for students.',
+    tag: 'On campus',
+    map: 'https://maps.app.goo.gl/pKMtzotFQMgR2xA9A'
+  },
 ];
 
 export default function CampusGuide() {
