@@ -2324,9 +2324,9 @@ const DEFAULT_DB = {
   ],
 
   clubs: [
-    { id: 'cl1', name: 'Robotics Club', category: 'Technical', desc: 'Build bots, compete in national robowars, weekly workshops.', meets: 'Wednesdays, 5 PM — Robotics Lab', formLink: 'https://forms.gle/example1' },
-    { id: 'cl2', name: 'Dramatics Society', category: 'Cultural', desc: 'Theatre, street plays, and the annual drama fest.', meets: 'Tuesdays & Fridays, 6 PM — Open Air Theatre', formLink: 'https://forms.gle/example2' },
-    { id: 'cl3', name: 'Coding Club', category: 'Technical', desc: 'DSA sessions, hackathons, competitive programming.', meets: 'Sundays, 11 AM — Seminar Hall B', formLink: 'https://forms.gle/example3' },
+    { id: 'cl1', name: 'Robotics Club', category: 'Technical', desc: 'Build bots, compete in national robowars, weekly workshops.', meets: 'Wednesdays, 5 PM — Robotics Lab', formLink: 'https://docs.google.com/forms/d/e/1FAIpQLSc648o9BgWofE3HW8dvSWIuqsbzqcVFTtyfBgruL_DwDDBt1w/viewform?usp=publish-editor' },
+    { id: 'cl2', name: 'Dramatics Society', category: 'Cultural', desc: 'Theatre, street plays, and the annual drama fest.', meets: 'Tuesdays & Fridays, 6 PM — Open Air Theatre', formLink: 'https://docs.google.com/forms/d/e/1FAIpQLSc648o9BgWofE3HW8dvSWIuqsbzqcVFTtyfBgruL_DwDDBt1w/viewform?usp=publish-editor' },
+    { id: 'cl3', name: 'Coding Club', category: 'Technical', desc: 'DSA sessions, hackathons, competitive programming.', meets: 'Sundays, 11 AM — Seminar Hall B', formLink: 'https://docs.google.com/forms/d/e/1FAIpQLSc648o9BgWofE3HW8dvSWIuqsbzqcVFTtyfBgruL_DwDDBt1w/viewform?usp=publish-editor' },
   ],
 
   campusUpdates: [
