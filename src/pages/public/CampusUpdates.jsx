@@ -1,8 +1,21 @@
 import { Store, fmtDate } from '../../store.js';
 
 export default function CampusUpdates() {
-  const updates = Store.get('campusUpdates').slice().reverse();
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const isUpcoming = (date) => {
+    const eventDate = new Date(`${date}T00:00:00`);
+    return eventDate >= today;
+  };
+
+  const updates = Store.get('campusUpdates')
+    .filter((u) => isUpcoming(u.date))
+    .slice()
+    .reverse();
+
   const events = Store.get('events')
+    .filter((e) => isUpcoming(e.date))
     .slice()
     .sort((a, b) => new Date(a.date) - new Date(b.date));
 

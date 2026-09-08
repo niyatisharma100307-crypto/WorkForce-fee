@@ -2045,10 +2045,61 @@ const DEFAULT_DB = {
   ],
 
   events: [
-    { id: 'e1', title: 'Annual Tech Fest — Convergence', date: '2026-09-12', location: 'Main Auditorium', desc: 'Three days of tech talks, competitions and a robotics showcase open to all branches.', audience: 'all', formLink: 'https://forms.gle/example-techfest' },
-    { id: 'e2', title: 'Placement Prep Workshop', date: '2026-08-28', location: 'Seminar Hall B', desc: 'Resume review and mock interviews with alumni from product companies.', audience: 'all', formLink: 'https://forms.gle/example-placement' },
-    { id: 'e3', title: 'Inter-branch Football League', date: '2026-09-02', location: 'Sports Ground', desc: 'Kickoff for the semester football league — sign up your branch team.', audience: 'all', formLink: '' },
-  ],
+  {
+    id: 'e1',
+    title: 'Annual Tech Fest — Convergence',
+    date: '2026-09-12',
+    location: 'Main Auditorium',
+    desc: 'Three days of tech talks, competitions and a robotics showcase open to all branches.',
+    audience: 'all',
+    formLink: 'https://forms.gle/example-techfest'
+  },
+  {
+    id: 'e2',
+    title: 'Coding Club Hack Night',
+    date: '2026-09-15',
+    location: 'Computer Lab 2',
+    desc: 'An evening of coding challenges, mini-projects and collaborative problem solving.',
+    audience: 'all',
+    formLink: ''
+  },
+  {
+    id: 'e3',
+    title: 'Placement Prep Workshop',
+    date: '2026-09-18',
+    location: 'Seminar Hall B',
+    desc: 'Resume review, aptitude practice and mock interviews with placement mentors.',
+    audience: 'all',
+    formLink: ''
+  },
+  {
+    id: 'e4',
+    title: 'Inter-branch Football League',
+    date: '2026-09-22',
+    location: 'Sports Ground',
+    desc: 'Semester football league featuring teams from different branches.',
+    audience: 'all',
+    formLink: ''
+  },
+  {
+    id: 'e5',
+    title: 'Robotics Showcase',
+    date: '2026-09-27',
+    location: 'Robotics Lab',
+    desc: 'Watch student teams demonstrate robots built during the semester.',
+    audience: 'all',
+    formLink: ''
+  },
+  {
+    id: 'e6',
+    title: 'Campus Cultural Night',
+    date: '2026-10-03',
+    location: 'Open Air Theatre',
+    desc: 'An evening of music, dance, theatre and performances by student clubs.',
+    audience: 'all',
+    formLink: ''
+  }
+],
 
   announcements: [
     { id: 'a1', title: 'Mid-sem datesheet released', body: 'Check the timetable page for updated exam slots. Any clashes should be reported to your class rep by Friday.', teacherId: 'T201', date: '2026-08-19' },
@@ -2427,6 +2478,7 @@ function readDb() {
     const db = JSON.parse(raw);
     // Lightweight migration for browsers that already had v4 data saved.
     if (!Array.isArray(db.admins)) db.admins = safeClone(DEFAULT_DB.admins);
+  
     // Remove the old demo content-manager account from existing v4 browsers.
     const cleanedAdmins = db.admins.filter((a) => a.id !== 'A001').slice(0, 1);
     const adminsChanged = JSON.stringify(cleanedAdmins) !== JSON.stringify(db.admins);
@@ -2434,6 +2486,108 @@ function readDb() {
     if (!Object.prototype.hasOwnProperty.call(db, 'rememberedLogin')) db.rememberedLogin = null;
     if (!Array.isArray(db.courseClasses)) db.courseClasses = [];
     if (!Array.isArray(db.enrollments)) db.enrollments = [];
+
+        // Update demo events and add fresh upcoming events
+    if (Array.isArray(db.events)) {
+      const freshEvents = [
+        {
+          id: 'e1',
+          title: 'Annual Tech Fest — Convergence',
+          date: '2026-09-12',
+          location: 'Main Auditorium',
+          desc: 'Three days of tech talks, competitions and a robotics showcase open to all branches.',
+          audience: 'all',
+          formLink: 'https://forms.gle/example-techfest'
+        },
+        {
+          id: 'e2',
+          title: 'Coding Club Hack Night',
+          date: '2026-09-15',
+          location: 'Computer Lab 2',
+          desc: 'An evening of coding challenges, mini-projects and collaborative problem solving.',
+          audience: 'all',
+          formLink: ''
+        },
+        {
+          id: 'e3',
+          title: 'Placement Prep Workshop',
+          date: '2026-09-18',
+          location: 'Seminar Hall B',
+          desc: 'Resume review, aptitude practice and mock interviews with placement mentors.',
+          audience: 'all',
+          formLink: ''
+        },
+        {
+          id: 'e4',
+          title: 'Inter-branch Football League',
+          date: '2026-09-22',
+          location: 'Sports Ground',
+          desc: 'Semester football league featuring teams from different branches.',
+          audience: 'all',
+          formLink: ''
+        },
+        {
+          id: 'e5',
+          title: 'Robotics Showcase',
+          date: '2026-09-27',
+          location: 'Robotics Lab',
+          desc: 'Watch student teams demonstrate robots built during the semester.',
+          audience: 'all',
+          formLink: ''
+        },
+        {
+          id: 'e6',
+          title: 'Campus Cultural Night',
+          date: '2026-10-03',
+          location: 'Open Air Theatre',
+          desc: 'An evening of music, dance, theatre and performances by student clubs.',
+          audience: 'all',
+          formLink: ''
+        }
+      ];
+
+      freshEvents.forEach((freshEvent) => {
+        const index = db.events.findIndex((e) => e.id === freshEvent.id);
+
+        if (index >= 0) {
+          db.events[index] = freshEvent;
+        } else {
+          db.events.push(freshEvent);
+        }
+      });
+    }
+
+    // Add fresh campus updates
+    if (Array.isArray(db.campusUpdates)) {
+      const freshUpdates = [
+        {
+          id: 'cu3',
+          title: 'Student Innovation Grant applications open',
+          date: '2026-09-09',
+          desc: 'Students can now apply for funding support for innovative academic and technical projects.'
+        },
+        {
+          id: 'cu4',
+          title: 'Library extended hours announced',
+          date: '2026-09-11',
+          desc: 'The central library will remain open late during the upcoming examination period.'
+        },
+        {
+          id: 'cu5',
+          title: 'Convergence 2026 begins this week',
+          date: '2026-09-12',
+          desc: 'Get ready for three days of technology talks, competitions and student showcases.'
+        }
+      ];
+
+      freshUpdates.forEach((freshUpdate) => {
+        const exists = db.campusUpdates.some((u) => u.id === freshUpdate.id);
+
+        if (!exists) {
+          db.campusUpdates.push(freshUpdate);
+        }
+      });
+    }
 
     // Ensure seed notes have active links
     if (Array.isArray(db.notes)) {
