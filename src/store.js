@@ -2487,106 +2487,108 @@ function readDb() {
     if (!Array.isArray(db.courseClasses)) db.courseClasses = [];
     if (!Array.isArray(db.enrollments)) db.enrollments = [];
 
-        // Update demo events and add fresh upcoming events
-    if (Array.isArray(db.events)) {
-      const freshEvents = [
-        {
-          id: 'e1',
-          title: 'Annual Tech Fest — Convergence',
-          date: '2026-09-12',
-          location: 'Main Auditorium',
-          desc: 'Three days of tech talks, competitions and a robotics showcase open to all branches.',
-          audience: 'all',
-          formLink: 'https://forms.gle/example-techfest'
-        },
-        {
-          id: 'e2',
-          title: 'Coding Club Hack Night',
-          date: '2026-09-15',
-          location: 'Computer Lab 2',
-          desc: 'An evening of coding challenges, mini-projects and collaborative problem solving.',
-          audience: 'all',
-          formLink: ''
-        },
-        {
-          id: 'e3',
-          title: 'Placement Prep Workshop',
-          date: '2026-09-18',
-          location: 'Seminar Hall B',
-          desc: 'Resume review, aptitude practice and mock interviews with placement mentors.',
-          audience: 'all',
-          formLink: ''
-        },
-        {
-          id: 'e4',
-          title: 'Inter-branch Football League',
-          date: '2026-09-22',
-          location: 'Sports Ground',
-          desc: 'Semester football league featuring teams from different branches.',
-          audience: 'all',
-          formLink: ''
-        },
-        {
-          id: 'e5',
-          title: 'Robotics Showcase',
-          date: '2026-09-27',
-          location: 'Robotics Lab',
-          desc: 'Watch student teams demonstrate robots built during the semester.',
-          audience: 'all',
-          formLink: ''
-        },
-        {
-          id: 'e6',
-          title: 'Campus Cultural Night',
-          date: '2026-10-03',
-          location: 'Open Air Theatre',
-          desc: 'An evening of music, dance, theatre and performances by student clubs.',
-          audience: 'all',
-          formLink: ''
-        }
-      ];
+    // Seed fresh events and campus updates once on initial migration
+    if (!db.freshContentMigrationV2) {
+      if (Array.isArray(db.events)) {
+        const freshEvents = [
+          {
+            id: 'e1',
+            title: 'Annual Tech Fest — Convergence',
+            date: '2026-09-12',
+            location: 'Main Auditorium',
+            desc: 'Three days of tech talks, competitions and a robotics showcase open to all branches.',
+            audience: 'all',
+            formLink: 'https://forms.gle/example-techfest'
+          },
+          {
+            id: 'e2',
+            title: 'Coding Club Hack Night',
+            date: '2026-09-15',
+            location: 'Computer Lab 2',
+            desc: 'An evening of coding challenges, mini-projects and collaborative problem solving.',
+            audience: 'all',
+            formLink: ''
+          },
+          {
+            id: 'e3',
+            title: 'Placement Prep Workshop',
+            date: '2026-09-18',
+            location: 'Seminar Hall B',
+            desc: 'Resume review, aptitude practice and mock interviews with placement mentors.',
+            audience: 'all',
+            formLink: ''
+          },
+          {
+            id: 'e4',
+            title: 'Inter-branch Football League',
+            date: '2026-09-22',
+            location: 'Sports Ground',
+            desc: 'Semester football league featuring teams from different branches.',
+            audience: 'all',
+            formLink: ''
+          },
+          {
+            id: 'e5',
+            title: 'Robotics Showcase',
+            date: '2026-09-27',
+            location: 'Robotics Lab',
+            desc: 'Watch student teams demonstrate robots built during the semester.',
+            audience: 'all',
+            formLink: ''
+          },
+          {
+            id: 'e6',
+            title: 'Campus Cultural Night',
+            date: '2026-10-03',
+            location: 'Open Air Theatre',
+            desc: 'An evening of music, dance, theatre and performances by student clubs.',
+            audience: 'all',
+            formLink: ''
+          }
+        ];
 
-      freshEvents.forEach((freshEvent) => {
-        const index = db.events.findIndex((e) => e.id === freshEvent.id);
+        freshEvents.forEach((freshEvent) => {
+          const index = db.events.findIndex((e) => e.id === freshEvent.id);
+          if (index >= 0) {
+            db.events[index] = freshEvent;
+          } else {
+            db.events.push(freshEvent);
+          }
+        });
+      }
 
-        if (index >= 0) {
-          db.events[index] = freshEvent;
-        } else {
-          db.events.push(freshEvent);
-        }
-      });
-    }
+      if (Array.isArray(db.campusUpdates)) {
+        const freshUpdates = [
+          {
+            id: 'cu3',
+            title: 'Student Innovation Grant applications open',
+            date: '2026-09-09',
+            desc: 'Students can now apply for funding support for innovative academic and technical projects.'
+          },
+          {
+            id: 'cu4',
+            title: 'Library extended hours announced',
+            date: '2026-09-11',
+            desc: 'The central library will remain open late during the upcoming examination period.'
+          },
+          {
+            id: 'cu5',
+            title: 'Convergence 2026 begins this week',
+            date: '2026-09-12',
+            desc: 'Get ready for three days of technology talks, competitions and student showcases.'
+          }
+        ];
 
-    // Add fresh campus updates
-    if (Array.isArray(db.campusUpdates)) {
-      const freshUpdates = [
-        {
-          id: 'cu3',
-          title: 'Student Innovation Grant applications open',
-          date: '2026-09-09',
-          desc: 'Students can now apply for funding support for innovative academic and technical projects.'
-        },
-        {
-          id: 'cu4',
-          title: 'Library extended hours announced',
-          date: '2026-09-11',
-          desc: 'The central library will remain open late during the upcoming examination period.'
-        },
-        {
-          id: 'cu5',
-          title: 'Convergence 2026 begins this week',
-          date: '2026-09-12',
-          desc: 'Get ready for three days of technology talks, competitions and student showcases.'
-        }
-      ];
+        freshUpdates.forEach((freshUpdate) => {
+          const exists = db.campusUpdates.some((u) => u.id === freshUpdate.id);
+          if (!exists) {
+            db.campusUpdates.push(freshUpdate);
+          }
+        });
+      }
 
-      freshUpdates.forEach((freshUpdate) => {
-        const exists = db.campusUpdates.some((u) => u.id === freshUpdate.id);
-
-        if (!exists) {
-          db.campusUpdates.push(freshUpdate);
-        }
-      });
+      db.freshContentMigrationV2 = true;
+      writeDb(db);
     }
 
     // Ensure seed notes have active links

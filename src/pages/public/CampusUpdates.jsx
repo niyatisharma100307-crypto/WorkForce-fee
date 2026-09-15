@@ -1,20 +1,29 @@
+import { useState, useEffect } from 'react';
 import { Store, fmtDate } from '../../store.js';
 
 export default function CampusUpdates() {
+  const [, setVersion] = useState(0);
+
+  useEffect(() => {
+    const handleUpdate = () => setVersion((v) => v + 1);
+    window.addEventListener('workforce-content-updated', handleUpdate);
+    return () => window.removeEventListener('workforce-content-updated', handleUpdate);
+  }, []);
+
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
   const isUpcoming = (date) => {
+    if (!date) return true;
     const eventDate = new Date(`${date}T00:00:00`);
-    return eventDate >= today;
+    return !isNaN(eventDate.getTime()) ? eventDate >= today : true;
   };
 
-  const updates = Store.get('campusUpdates')
-    .filter((u) => isUpcoming(u.date))
+  const updates = (Store.get('campusUpdates') || [])
     .slice()
     .reverse();
 
-  const events = Store.get('events')
+  const events = (Store.get('events') || [])
     .filter((e) => isUpcoming(e.date))
     .slice()
     .sort((a, b) => new Date(a.date) - new Date(b.date));
