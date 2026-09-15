@@ -55,7 +55,13 @@ export default function Nav() {
             {session ? (
               <>
                 <Link
-                  to={session.role === 'student' ? '/student/dashboard' : '/teacher/dashboard'}
+                  to={
+                    session.role === 'student'
+                      ? '/student/dashboard'
+                      : session.role === 'teacher'
+                      ? '/teacher/dashboard'
+                      : '/admin/content'
+                  }
                   className="btn btn-sm btn-ghost"
                 >
                   {session.name.split(' ')[0]}
