@@ -1,4 +1,10 @@
+
+
+
 import { Link } from 'react-router-dom';
+
+
+
 
 const PUBLIC_TILES = [
   ['/campus-guide', '', 'Campus Guide', 'Where everything is, plus nearby essentials with map links.'],
@@ -94,6 +100,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      
 
       {/* PORTALS */}
       <section className="wrap section">

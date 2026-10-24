@@ -1,6 +1,6 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthContext.jsx';
-
+import ThemeToggle from './ThemeToggle.jsx';
 const PUBLIC_LINKS = [
   ['/', 'Home'],
   ['/campus-guide', 'Campus Guide'],
@@ -51,8 +51,10 @@ export default function Nav() {
             ))}
           </nav>
 
-          <div className="nav-cta">
-            {session ? (
+         <div className="nav-cta">
+  <ThemeToggle />
+
+  {session ? (
               <>
                 <Link
                   to={

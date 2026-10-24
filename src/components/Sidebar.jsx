@@ -12,6 +12,7 @@ const STUDENT_NAV = [
   ['/student/tests', '', 'Upcoming Tests'],
   ['/student/timetable', '', 'Timetable'],
   ['/student/assignments', '', 'Assignments'],
+  ['/student/doubts', '', 'Doubt Queue'],
   ['/student/exchange', '', 'Campus Exchange'],
   ['/student/service-requests', '', 'Service Requests'],
   ['/student/messages', '', 'Messages'],
@@ -31,6 +32,7 @@ const TEACHER_NAV = [
   ['/teacher/timetable', '', 'Timetable'],
   ['/teacher/complaints', '', 'Complaints'],
   ['/teacher/assignments', '', 'Assignments'],
+  ['/teacher/doubts', '', 'Doubt Queue'],
   ['/teacher/messages', '', 'Conversations'],
 ];
 
