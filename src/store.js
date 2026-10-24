@@ -235,11 +235,132 @@ const DEFAULT_DB = {
     { id: 'cc4', teacherId: 'T202', classKey: 'ECE-3rd Year', course: 'Signals & Systems', section: 'A', groups: [], studentIds: [] },
     { id: 'cc5', teacherId: 'T203', classKey: 'CSE-3rd Year', course: 'Algorithms', section: 'A', groups: [], studentIds: [] },
     { id: 'cc6', teacherId: 'T204', classKey: 'IT-2nd Year', course: 'Web Technologies', section: 'A', groups: [], studentIds: [] },
+    {
+  id: 'cc7',
+  teacherId: 'T201',
+  classKey: 'CSE-2nd Year',
+  course: 'Maths III',
+  section: 'A',
+  groups: [],
+  studentIds: []
+},
+{
+  id: 'cc8',
+  teacherId: 'T205',
+  classKey: 'ECE-2nd Year',
+  course: 'Circuit Theory',
+  section: 'A',
+  groups: [],
+  studentIds: []
+},
+{
+  id: 'cc9',
+  teacherId: 'T205',
+  classKey: 'ECE-2nd Year',
+  course: 'Electronic Devices',
+  section: 'A',
+  groups: [],
+  studentIds: []
+},
+{
+  id: 'cc10',
+  teacherId: 'T205',
+  classKey: 'ECE-2nd Year',
+  course: 'Maths III',
+  section: 'A',
+  groups: [],
+  studentIds: []
+},
+{
+  id: 'cc11',
+  teacherId: 'T205',
+  classKey: 'ECE-2nd Year',
+  course: 'Digital Logic Design',
+  section: 'A',
+  groups: [],
+  studentIds: []
+},
+{
+  id: 'cc12',
+  teacherId: 'T203',
+  classKey: 'CSE-3rd Year',
+  course: 'Computer Networks',
+  section: 'A',
+  groups: [],
+  studentIds: []
+},
+{
+  id: 'cc13',
+  teacherId: 'T203',
+  classKey: 'CSE-3rd Year',
+  course: 'Operating Systems',
+  section: 'A',
+  groups: [],
+  studentIds: []
+},
+{
+  id: 'cc14',
+  teacherId: 'T203',
+  classKey: 'CSE-3rd Year',
+  course: 'Software Engineering',
+  section: 'A',
+  groups: [],
+  studentIds: []
+},
+{
+  id: 'cc15',
+  teacherId: 'T204',
+  classKey: 'IT-2nd Year',
+  course: 'Data Structures',
+  section: 'A',
+  groups: [],
+  studentIds: []
+},
+{
+  id: 'cc16',
+  teacherId: 'T204',
+  classKey: 'IT-2nd Year',
+  course: 'Operating Systems',
+  section: 'A',
+  groups: [],
+  studentIds: []
+},
+{
+  id: 'cc17',
+  teacherId: 'T204',
+  classKey: 'IT-2nd Year',
+  course: 'Maths III',
+  section: 'A',
+  groups: [],
+  studentIds: []
+},
   ],
 
   // Optional course enrolments created from the Add Students portal. A student can
   // belong to many courses without creating duplicate student accounts.
-  enrollments: [],
+  enrollments: [
+    {
+  id: 'enr_demo_2510990767_cc1',
+  studentId: '2510990767',
+  courseClassId: 'cc1',
+  status: 'active'
+},
+  ],
+  // Class Doubt Queue
+doubts: [
+  {
+    id: 'db1',
+    courseClassId: 'cc1',
+    studentId: 'S102',
+    title: 'Why does BST deletion need an inorder successor?',
+    detail: 'Confused about the two-children case.',
+    anonymous: false,
+    date: '2026-08-20',
+    upvotes: ['S102', 'S104'],
+    status: 'open',
+    replies: []
+  },
+],
 
   grades: [
     { id: 'g1', studentId: 'S101', subject: 'Data Structures', grade: 'A', marks: 88, credit: 4, term: 'Sem 3', teacherId: 'T201' },
@@ -2486,6 +2607,24 @@ function readDb() {
     if (!Object.prototype.hasOwnProperty.call(db, 'rememberedLogin')) db.rememberedLogin = null;
     if (!Array.isArray(db.courseClasses)) db.courseClasses = [];
     if (!Array.isArray(db.enrollments)) db.enrollments = [];
+    if (!Array.isArray(db.doubts)) db.doubts = [];
+    // Demo student enrollment for Doubt Queue
+const demoStudentId = '2510990767';
+
+if (
+  db.students?.some((s) => s.id === demoStudentId) &&
+  db.courseClasses?.some((cc) => cc.id === 'cc1') &&
+  !db.enrollments.some(
+    (e) => e.studentId === demoStudentId && e.courseClassId === 'cc1'
+  )
+) {
+  db.enrollments.push({
+    id: 'enr_demo_2510990767_cc1',
+    studentId: demoStudentId,
+    courseClassId: 'cc1',
+    status: 'active',
+  });
+}
 
     // Seed fresh events and campus updates once on initial migration
     if (!db.freshContentMigrationV2) {
@@ -2800,6 +2939,49 @@ export function courseClassGroups(courseClass) {
   return ALL_GROUPS;
 }
 
+export function getStudentCourseClasses(studentId) {
+  if (!studentId) return [];
+
+  const student = (Store.get('students') || []).find(
+    (s) => s.id === studentId
+  );
+
+  if (!student) return [];
+
+  const studentClassKey = classKeyOf(student);
+  const courseClasses = Store.get('courseClasses') || [];
+  const enrollments = Store.get('enrollments') || [];
+
+  return courseClasses.filter((cc) => {
+    // 1. Explicit enrollment
+    if (
+      enrollments.some(
+        (e) =>
+          e.courseClassId === cc.id &&
+          e.studentId === studentId
+      )
+    ) {
+      return true;
+    }
+
+    // 2. Explicit student roster
+    if (
+      Array.isArray(cc.studentIds) &&
+      cc.studentIds.includes(studentId)
+    ) {
+      return true;
+    }
+
+    // 3. Match student's Year + Branch
+    const ccClassKey =
+      cc.classKey ||
+      (cc.branch && cc.year
+        ? `${cc.branch}-${cc.year}`
+        : null);
+
+    return ccClassKey === studentClassKey;
+  });
+}
 export function studentsForCourseClass(courseClass, selectedGroup = null) {
   if (!courseClass) return [];
   const students = Store.get('students') || [];
@@ -2815,22 +2997,3 @@ export function studentsForCourseClass(courseClass, selectedGroup = null) {
   }
   return result;
 }
-
-export function getStudentCourseClasses(studentId) {
-  if (!studentId) return [];
-  return (Store.get('courseClasses') || []).filter((cc) => {
-    if (Array.isArray(cc.studentIds) && cc.studentIds.includes(studentId)) return true;
-    return (Store.get('enrollments') || []).some((e) => e.courseClassId === cc.id && e.studentId === studentId);
-  });
-}
-
-/** Next unused sequential student ID, e.g. 'S261' if the highest existing is S260. */
-export function nextStudentId() {
-  const students = Store.get('students');
-  const nums = students
-    .map((s) => parseInt(String(s.id).replace(/\D/g, ''), 10))
-    .filter((n) => !isNaN(n));
-  const max = nums.length ? Math.max(...nums) : 100;
-  return `S${max + 1}`;
-}
-

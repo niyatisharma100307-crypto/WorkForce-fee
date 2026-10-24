@@ -30,6 +30,7 @@ import StudentMessages from './pages/student/Messages.jsx';
 import StudentExchange from './pages/student/Exchange.jsx';
 import StudentServiceRequests from './pages/student/ServiceRequests.jsx';
 import StudentProfile from './pages/student/Profile.jsx';
+import StudentDoubts from './pages/student/Doubts.jsx';
 
 import TeacherDashboard from './pages/teacher/Dashboard.jsx';
 import TeacherAnnouncements from './pages/teacher/Announcements.jsx';
@@ -42,6 +43,8 @@ import TeacherAssignments from './pages/teacher/Assignments.jsx';
 import TeacherMessages from './pages/teacher/Messages.jsx';
 import TeacherProfile from './pages/teacher/Profile.jsx';
 import TeacherRoster from './pages/teacher/Roster.jsx';
+import TeacherDoubts from './pages/teacher/Doubts.jsx';
+
 import AdminContent from './pages/admin/Content.jsx';
 
 export default function App() {
@@ -82,7 +85,8 @@ export default function App() {
         <Route path="/student/messages" element={<StudentMessages />} />
         <Route path="/student/exchange" element={<StudentExchange />} />
         <Route path="/student/service-requests" element={<StudentServiceRequests />} />
-        <Route path="/student/profile" element={<StudentProfile />} />
+<Route path="/student/doubts" element={<StudentDoubts />} />
+<Route path="/student/profile" element={<StudentProfile />} />
       </Route>
 
       {/* Teacher portal — requires teacher login */}
@@ -103,6 +107,7 @@ export default function App() {
         <Route path="/teacher/roster" element={<TeacherRoster />} />
         <Route path="/teacher/assignments" element={<TeacherAssignments />} />
         <Route path="/teacher/messages" element={<TeacherMessages />} />
+        <Route path="/teacher/doubts" element={<TeacherDoubts />} />
         <Route path="/teacher/profile" element={<TeacherProfile />} />
       </Route>
 
