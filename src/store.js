@@ -3017,3 +3017,18 @@ export function getStudentCourseClasses(studentId) {
     return ccClassKey === studentClassKey;
   });
 }
+export function studentsForCourseClass(courseClass, selectedGroup = null) {
+  if (!courseClass) return [];
+  const students = Store.get('students') || [];
+  const ids = new Set(Array.isArray(courseClass.studentIds) ? courseClass.studentIds : []);
+  const enrollments = (Store.get('enrollments') || []).filter((e) => e.courseClassId === courseClass.id);
+  enrollments.forEach((e) => ids.add(e.studentId));
+  let result = students.filter((s) => ids.has(s.id));
+  if (selectedGroup && selectedGroup !== 'All') {
+    result = result.filter((s) => {
+      const enrollment = enrollments.find((e) => e.studentId === s.id);
+      return (enrollment?.group || s.group) === selectedGroup;
+    });
+  }
+  return result;
+}
