@@ -1,0 +1,365 @@
+.ptc-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px;
+  min-height: 100vh;
+  background: #f5f6fc;
+  color: #202640;
+  font-family: Arial, sans-serif;
+}
+
+.ptc-container * {
+  box-sizing: border-box;
+}
+
+.ptc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.ptc-label {
+  color: #6558d3;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.ptc-header h1 {
+  margin: 8px 0;
+  font-size: 32px;
+}
+
+.ptc-subtitle,
+.ptc-hint {
+  color: #737b90;
+  font-size: 14px;
+}
+
+.ptc-role-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 150px;
+}
+
+.ptc-role-box label {
+  font-size: 12px;
+  color: #737b90;
+}
+
+.ptc-role-box select {
+  padding: 10px;
+  border: 1px solid #dddfee;
+  border-radius: 8px;
+  background: white;
+}
+
+.ptc-banner {
+  padding: 30px;
+  border-radius: 18px;
+  color: white;
+  background: linear-gradient(120deg, #5145bd, #8174e8);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.ptc-banner h2 {
+  margin-top: 0;
+  font-size: 27px;
+}
+
+.ptc-banner p {
+  line-height: 1.6;
+}
+
+.ptc-banner-icon {
+  font-size: 48px;
+  padding: 15px;
+  background: #ffffff25;
+  border-radius: 15px;
+}
+
+.ptc-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin: 20px 0;
+}
+
+.ptc-stat,
+.ptc-card {
+  padding: 22px;
+  background: white;
+  border: 1px solid #e8eaf3;
+  border-radius: 14px;
+  box-shadow: 0 5px 20px #20264008;
+  min-width: 0;
+}
+
+.ptc-stat span {
+  color: #737b90;
+  font-size: 13px;
+}
+
+.ptc-stat h2 {
+  font-size: 29px;
+  margin-bottom: 0;
+}
+
+.ptc-tabs {
+  display: flex;
+  gap: 10px;
+  border-bottom: 1px solid #e0e3ef;
+  margin: 25px 0 20px;
+}
+
+.ptc-tabs button {
+  padding: 13px 20px;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  font-weight: bold;
+  color: #737b90;
+}
+
+.ptc-tabs button.selected {
+  color: #6558d3;
+  border-bottom-color: #6558d3;
+}
+
+.ptc-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.ptc-card h2 {
+  font-size: 19px;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.ptc-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ptc-card label {
+  font-size: 13px;
+  font-weight: bold;
+  color: #626b80;
+  margin-top: 5px;
+}
+
+.ptc-card input,
+.ptc-card select,
+.ptc-card textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #dfe2ed;
+  border-radius: 8px;
+  font: inherit;
+  font-size: 14px;
+  background: white;
+  color: #202640;
+}
+
+.ptc-card input:focus,
+.ptc-card select:focus,
+.ptc-card textarea:focus {
+  outline: none;
+  border-color: #8174e8;
+  box-shadow: 0 0 0 3px #8174e820;
+}
+
+.ptc-card textarea {
+  resize: vertical;
+}
+
+.ptc-primary,
+.ptc-danger {
+  padding: 11px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.ptc-primary {
+  background: #6558d3;
+  color: white;
+}
+
+.ptc-primary:hover {
+  background: #5044bb;
+}
+
+.ptc-danger {
+  background: #ffe8e8;
+  color: #bd3333;
+}
+
+.ptc-feedback-item {
+  border: 1px solid #e9ebf3;
+  border-radius: 11px;
+  padding: 16px;
+  margin-bottom: 13px;
+  overflow-wrap: anywhere;
+}
+
+.ptc-item-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.ptc-item-heading > span:first-child {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.ptc-status {
+  font-size: 11px;
+  font-weight: bold;
+  color: #a36a0b;
+  background: #fff0d2;
+  padding: 5px 9px;
+  border-radius: 20px;
+}
+
+.ptc-status.replied {
+  color: #167548;
+  background: #dcf8e8;
+}
+
+.ptc-feedback-item p {
+  color: #687187;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.ptc-reply {
+  margin-top: 12px;
+  padding: 12px;
+  background: #f0efff;
+  border-left: 3px solid #6558d3;
+  border-radius: 5px;
+}
+
+.ptc-reply b {
+  color: #5145bd;
+  font-size: 13px;
+}
+
+.ptc-reply-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.ptc-chat {
+  min-height: 200px;
+  max-height: 380px;
+  overflow-y: auto;
+  padding: 10px;
+  margin-bottom: 15px;
+  background: #f7f8fc;
+  border-radius: 10px;
+}
+
+.ptc-chat-message {
+  padding: 13px;
+  margin-bottom: 10px;
+  background: white;
+  border: 1px solid #e8eaf3;
+  border-radius: 10px;
+}
+
+.ptc-chat-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 11px;
+  color: #6558d3;
+}
+
+.ptc-chat-meta span {
+  color: #9299a8;
+}
+
+.ptc-chat-message p {
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.ptc-card .ptc-chat-form {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.ptc-chat-form input {
+  flex: 1;
+  min-width: 0;
+}
+
+.ptc-meeting-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.ptc-footer {
+  margin-top: 30px;
+  text-align: center;
+  color: #9299a8;
+  font-size: 12px;
+}
+
+@media (max-width: 760px) {
+  .ptc-container {
+    padding: 16px;
+  }
+
+  .ptc-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ptc-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ptc-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .ptc-banner {
+    padding: 22px;
+  }
+
+  .ptc-banner-icon {
+    display: none;
+  }
+
+  .ptc-header h1 {
+    font-size: 26px;
+  }
+
+  .ptc-tabs button {
+    padding: 12px;
+  }
+}
