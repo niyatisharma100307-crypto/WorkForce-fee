@@ -1,5 +1,5 @@
+import ParentTeacherConnect from "./ParentTeacherConnect";
 import { Routes, Route } from 'react-router-dom';
-
 import PublicLayout from './components/PublicLayout.jsx';
 import AppLayout from './components/AppLayout.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
@@ -121,6 +121,11 @@ export default function App() {
       >
         <Route path="/admin/content" element={<AdminContent />} />
       </Route>
+     <Route
+  path="/parent-teacher-connect"
+  element={<ParentTeacherConnect />}
+/>
+      <Route path="*" element={<Home />} />
 
       {/* Fallback — send anything unmatched home */}
       <Route path="*" element={<Home />} />
