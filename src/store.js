@@ -4,6 +4,33 @@
    Framework-agnostic: plain functions, no DOM/React deps.
    ============================================ */
 
+// Builds realistic demo attendance (weekday dates, absences spread evenly) so a
+// demo student shows believable percentages instead of 1/1 or 2/3.
+function demoAttendanceFor(studentId, subject, teacherId, classKey, present, total) {
+  const absent = total - present;
+  const absentAt = new Set();
+  for (let i = 0; i < absent; i++) absentAt.add(Math.floor(((i + 0.5) * total) / absent));
+  const out = [];
+  const day = new Date(Date.UTC(2026, 5, 1)); // 1 June 2026
+  for (let i = 0; i < total; i++) {
+    while (day.getUTCDay() === 0 || day.getUTCDay() === 6) day.setUTCDate(day.getUTCDate() + 1);
+    out.push({
+      studentId, subject, date: day.toISOString().slice(0, 10),
+      status: absentAt.has(i) ? 'absent' : 'present', teacherId, classKey,
+    });
+    day.setUTCDate(day.getUTCDate() + 1);
+  }
+  return out;
+}
+
+function demoAttendanceS101() {
+  return [
+    ...demoAttendanceFor('S101', 'Discrete Structures', 'T201', 'CSE-2nd Year', 40, 47),
+    ...demoAttendanceFor('S101', 'DBMS', 'T201', 'CSE-2nd Year', 50, 60),
+    ...demoAttendanceFor('S101', 'FEE', 'T206', 'CSE-2nd Year', 80, 88),
+  ];
+}
+
 const DB_KEY = 'workforce_db_v4';
 const BACKUP_DB_KEY = 'workforce_db_backup_v1';
 
@@ -970,10 +997,7 @@ doubts: [
   ],
 
   attendance: [
-    { studentId: 'S101', subject: 'Data Structures', date: '2026-08-18', status: 'present', teacherId: 'T206', classKey: 'CSE-2nd Year' },
-    { studentId: 'S101', subject: 'Data Structures', date: '2026-08-19', status: 'present', teacherId: 'T206', classKey: 'CSE-2nd Year' },
-    { studentId: 'S101', subject: 'Data Structures', date: '2026-08-20', status: 'absent', teacherId: 'T206', classKey: 'CSE-2nd Year' },
-    { studentId: 'S101', subject: 'DBMS', date: '2026-08-18', status: 'present', teacherId: 'T206', classKey: 'CSE-2nd Year' },
+    ...demoAttendanceS101(),
     { studentId: 'S102', subject: 'Data Structures', date: '2026-08-18', status: 'present', teacherId: 'T206', classKey: 'CSE-2nd Year' },
     { studentId: 'S104', subject: 'Data Structures', date: '2026-08-18', status: 'present', teacherId: 'T206', classKey: 'CSE-2nd Year' },
     { studentId: 'S104', subject: 'Data Structures', date: '2026-08-19', status: 'absent', teacherId: 'T206', classKey: 'CSE-2nd Year' },
@@ -2765,6 +2789,17 @@ if (
       // Persist the demo-account cleanup so it stays removed after a refresh.
       writeDb(db);
     }
+    // Replace S101's tiny original demo attendance (<= 4 records) with realistic data, once.
+    if (!db.demoAttendanceV1) {
+      db.demoAttendanceV1 = true;
+      if (Array.isArray(db.attendance)) {
+        const mine = db.attendance.filter((a) => a.studentId === 'S101');
+        if (mine.length <= 4) {
+          db.attendance = db.attendance.filter((a) => a.studentId !== 'S101').concat(demoAttendanceS101());
+        }
+      }
+      writeDb(db);
+    }
     return db;
   } catch (e) {
     console.error('Store read failed', e);
@@ -2981,19 +3016,4 @@ export function getStudentCourseClasses(studentId) {
 
     return ccClassKey === studentClassKey;
   });
-}
-export function studentsForCourseClass(courseClass, selectedGroup = null) {
-  if (!courseClass) return [];
-  const students = Store.get('students') || [];
-  const ids = new Set(Array.isArray(courseClass.studentIds) ? courseClass.studentIds : []);
-  const enrollments = (Store.get('enrollments') || []).filter((e) => e.courseClassId === courseClass.id);
-  enrollments.forEach((e) => ids.add(e.studentId));
-  let result = students.filter((s) => ids.has(s.id));
-  if (selectedGroup && selectedGroup !== 'All') {
-    result = result.filter((s) => {
-      const enrollment = enrollments.find((e) => e.studentId === s.id);
-      return (enrollment?.group || s.group) === selectedGroup;
-    });
-  }
-  return result;
 }
