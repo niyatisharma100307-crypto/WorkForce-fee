@@ -12,6 +12,13 @@ import { AuthProvider } from './components/AuthContext.jsx';
 import { ToastProvider } from './components/Toast.jsx';
 import App from './App.jsx';
 
+// Reset any legacy dark/power mode
+document.documentElement.removeAttribute('data-theme');
+try {
+  localStorage.removeItem('powerMode');
+} catch {}
+
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
